@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     i = 0;
 	while (map[i])
 	{
-		printf("%s", map[i]);
+		printf("%s\n", map[i]);
 		i++;
 	}
     return (0);
