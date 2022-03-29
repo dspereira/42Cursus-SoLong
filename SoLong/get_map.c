@@ -1,22 +1,19 @@
 #include "so_long.h"
-#include "get_next_line/get_next_line.h"
+
+//IMPORTANTE: segfoult quando o ficheiro está vazio.
 
 static int get_num_lines(char *path);
 static t_map get_map_from_file(char *path);
-int validate_map(char **map);
-
-
 
 t_map get_map(char *map_path)
 {
 	t_map map;
 
 	map = get_map_from_file(map_path);
-
-	/*if (validate_map(map))
-		printf("Mapa válido\n");
-	else
-		printf("Mapa ERRADO\n");*/
+	if(map_validation(map))
+		printf("MAPA CERTO\n");
+	else 
+		printf("MAPA ERADO\n");
 
 	return (map);
 }
@@ -65,20 +62,4 @@ static t_map get_map_from_file(char *path)
 	map.length = ft_strlen(map.map[0]);
 	close(fd);
 	return (map);
-}
-
-int validate_map(char **map)
-{
-	int lengh;
-	int i;
-
-	lengh = ft_strlen(map[0]);
-	i = 1;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) != lengh)
-			return (0);
-		i++;
-	}
-	return (1);
 }
