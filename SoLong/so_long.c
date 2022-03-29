@@ -2,10 +2,27 @@
 
 //gcc so_long.c get_map.c get_next_line/get_next_line_utils.c get_next_line/get_next_line.c
 
+// função de teste durante o desenvolvimento
+void print_map(t_map map)
+{
+    int i; 
+    
+    i = 0;
+    printf("mapa h: %i\n", map.height);
+    printf("mapa l: %i\n", map.length);
+    while(i < map.height)
+    {
+        if (map.map[i])
+            printf("%s\n", map.map[i]);
+        else 
+            printf("\n");
+        i++;
+    }
+}
+
 int main(int argc, char **argv)
 {
-    char **map;
-    int i;
+    t_map map;
 
     if (argc != 2)
     {
@@ -13,12 +30,6 @@ int main(int argc, char **argv)
         return (0);
     }
     map = get_map(argv[1]);
-
-    i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
+    print_map(map);
     return (0);
 }

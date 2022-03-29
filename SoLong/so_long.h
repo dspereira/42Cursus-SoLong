@@ -5,6 +5,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-char **get_map(char *map_path);
+typedef struct s_map
+{
+	int length;
+	int height;
+	char **map;
+} t_map;
+
+t_map get_map(char *map_path);
 
 #endif
