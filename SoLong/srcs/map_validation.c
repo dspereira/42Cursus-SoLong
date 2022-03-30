@@ -21,7 +21,7 @@ static int map_is_rectangle(t_map map)
 	{
 		if (!map.map || !map.map[i])
 			return (0);
-		if (ft_strlen(map.map[i]) != map.length)
+		if ((int)ft_strlen(map.map[i]) != map.length)
 			return (0);
 		i++;
 	}
