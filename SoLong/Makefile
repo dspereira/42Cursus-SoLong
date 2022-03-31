@@ -9,7 +9,7 @@ SRCS 		= 	$(SOLONG) \
 OBJS		= 	$(SRCS:.c=.o)
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -I./includes
+CFLAGS			= -I./includes
 MLX_F_LINUX		= -Imlx_linux -O3
 MLX_F_LINUX1	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM				= rm -f
