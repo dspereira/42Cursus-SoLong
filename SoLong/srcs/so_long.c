@@ -65,10 +65,18 @@ void init_map(t_map map, t_imgs imgs, void	*mlx, void	*mlx_win)
 	}
 }
 
+int	close1(int keycode, t_win *vars)
+{
+	printf("keycode: %i\n", keycode);
+	//mlx_destroy_window(vars->mlx, vars->mlx_win);
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 	t_map 	map;
 	t_imgs	imgs;
+	t_win	win;
 	void	*mlx;
 	void	*mlx_win;
 
@@ -78,10 +86,11 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	map = get_map(argv[1]);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, map.length * IMG_SIZE, map.height * IMG_SIZE, "SoLong");	
-	imgs = init_assets(mlx);
-	init_map(map, imgs, mlx, mlx_win);
-	mlx_loop(mlx);
+	win.mlx = mlx_init();
+	win.mlx_win = mlx_new_window(win.mlx, map.length * IMG_SIZE, map.height * IMG_SIZE, "SoLong");	
+	imgs = init_assets(win.mlx);
+	init_map(map, imgs, win.mlx, win.mlx_win);
+	mlx_hook(win.mlx_win, 2, 1L<<0, close1, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }
