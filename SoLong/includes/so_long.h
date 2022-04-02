@@ -17,7 +17,15 @@
 # define TREE_PATH 		"./assets/tree.xpm"
 # define PLAYER_PATH 	"./assets/player.xpm"
 
+// KEYS for ubuntu linux 
+# define KEY_UP			119
+# define KEY_DOWN		115
+# define KEY_LEFT		97
+# define KEY_RIGHT		100
+# define KEY_ESC		65307
+
 # define IMG_SIZE		60
+
 
 enum {
 	ON_KEYDOWN = 2,
@@ -49,6 +57,12 @@ typedef struct s_imgs
 	void *player;
 }	t_imgs; 
 
+typedef struct s_data
+{
+	t_map	map;
+	t_win	win;
+	t_imgs	imgs;
+}	t_data;
 
 /* get_map.c */
 t_map get_map(char *map_path);
