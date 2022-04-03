@@ -37,8 +37,15 @@ enum {
 	ON_DESTROY = 17
 };
 
+typedef struct s_pos
+{
+	int x;
+	int y;
+}	t_pos;
+
 typedef struct s_map
 {
+	t_pos p;
 	int length;
 	int height;
 	char **map;
@@ -69,5 +76,8 @@ t_map get_map(char *map_path);
 
 /* map_validations.c*/
 int map_validation(t_map map);
+
+/* game_init.c */
+t_data game_init(t_data *data);
 
 #endif

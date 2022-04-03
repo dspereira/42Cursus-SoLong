@@ -18,70 +18,33 @@ void print_map(t_map map)
 	}
 }
 
-t_imgs init_assets(void *mlx)
-{
-	t_imgs imgs;
-	int img_width;
-	int img_height;
-
-	imgs.grass = mlx_xpm_file_to_image(mlx, GRASS_PATH, &img_width, &img_height);
-	printf("GRASS: size: %i x %i\n", img_width, img_height);
-	imgs.tree = mlx_xpm_file_to_image(mlx, TREE_PATH, &img_width, &img_height);
-	printf("TREE: size: %i x %i\n", img_width, img_height);
-	imgs.player = mlx_xpm_file_to_image(mlx, PLAYER_PATH, &img_width, &img_height);
-	printf("TREE: size: %i x %i\n", img_width, img_height);
-	return (imgs);
-}
-
-
-void init_map(t_map map, t_imgs imgs, t_win	win)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < map.height)
-	{
-		j = 0;
-		while (j < map.length)
-		{
-			if (map.map[i][j] == GRASS)
-				mlx_put_image_to_window(win.mlx, win.mlx_win, imgs.grass, j * IMG_SIZE, i * IMG_SIZE);
-			else if (map.map[i][j] == TREE)
-				mlx_put_image_to_window(win.mlx, win.mlx_win, imgs.tree, j * IMG_SIZE, i * IMG_SIZE);
-			else if (map.map[i][j] == PLAYER)
-			{
-				mlx_put_image_to_window(win.mlx, win.mlx_win, imgs.grass, j * IMG_SIZE, i * IMG_SIZE);
-				mlx_put_image_to_window(win.mlx, win.mlx_win, imgs.player, j * IMG_SIZE, i * IMG_SIZE);
-			}	
-			printf("%c", map.map[i][j]);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-}
-
 
 void up(t_data *data)
 {
-	//mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, 0 * IMG_SIZE, 0 * IMG_SIZE);
-	printf("cima\n");
+	data->map.p.y -= 10;
+	mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
+	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
-void down(void)
+void down(t_data *data)
 {
-	printf("baixo\n");
+	data->map.p.y += 10;
+	mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
+	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
-void left(void)
+void left(t_data *data)
 {
-	printf("esquerda\n");
+	data->map.p.x -= 10;
+	mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
+	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
-void right(void)
+void right(t_data *data)
 {
-	printf("direita\n");
+	data->map.p.x += 10;
+	mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
+	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
 int	key_press(int keycode, t_data *data)
@@ -91,12 +54,12 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == KEY_UP)
 		up(data);
 	else if (keycode == KEY_DOWN)
-		down();
+		down(data);
 	else if (keycode == KEY_LEFT)
-		left();
+		left(data);
 	else if (keycode == KEY_RIGHT)
-		right();
-	return (34);
+		right(data);
+	return (0);
 }
 
 int main(int argc, char **argv)
@@ -111,15 +74,11 @@ int main(int argc, char **argv)
 		printf("Wrong parmeters: You have to indicate the path of map\n");
 		return (0);
 	}
-	map = get_map(argv[1]);
-	win.mlx = mlx_init();
-	win.mlx_win = mlx_new_window(win.mlx, map.length * IMG_SIZE, map.height * IMG_SIZE, "SoLong");	
-	imgs = init_assets(win.mlx);
-	init_map(map, imgs, win);
-	data.imgs = imgs;
-	data.map = map;
-	data.win = win;
-	mlx_hook(win.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
-	mlx_loop(win.mlx);
+	data.map = get_map(argv[1]);
+	data.win.mlx = mlx_init();
+	data.win.mlx_win = mlx_new_window(data.win.mlx, data.map.length * IMG_SIZE, data.map.height * IMG_SIZE, "SoLong");		
+	game_init(&data);
+	mlx_hook(data.win.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
+	mlx_loop(data.win.mlx);
 	return (0);
 }
