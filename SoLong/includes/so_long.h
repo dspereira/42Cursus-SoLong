@@ -80,4 +80,7 @@ int map_validation(t_map map);
 /* game_init.c */
 t_data game_init(t_data *data);
 
+/* key_control.c */
+int	key_control(int keycode, t_data *data);
+
 #endif
