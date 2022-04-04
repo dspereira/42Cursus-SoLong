@@ -24,9 +24,16 @@
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
 
+# define UP				0
+# define DOWN			1
+# define LEFT			2
+# define RIGHT			3
+
 # define IMG_SIZE		60
 
 # define MOVE_RANGE		10
+
+# define PLAYER_SIZE	58
 
 
 enum {
@@ -86,6 +93,6 @@ t_data game_init(t_data *data);
 int	key_control(int keycode, t_data *data);
 
 /* game_rules */
-int is_valid_move(t_map map, int x, int y);
+int is_valid_move(t_map map, int x, int y, int d);
 
 #endif

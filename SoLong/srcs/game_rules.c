@@ -1,57 +1,30 @@
 #include "so_long.h"
 
-
-int is_valid_move(t_map map, int x, int y)
+int is_valid_move(t_map map, int x, int y, int d)
 {
 	int i;
 	int j;
-	int a;
+	int k;
+	int p_offset;
 
-	map.p.x += x;
-	map.p.y += y;
-	
-
-	if (x != 0)
+	p_offset = 0;
+	if (d == DOWN || d == RIGHT)
+		p_offset = PLAYER_SIZE;
+	if (d == LEFT || d == RIGHT)
 	{
-		if (x < 0)
-		{
-			j = map.p.x / IMG_SIZE;
-			i = map.p.y / IMG_SIZE;
-			a = (map.p.y + 58) / IMG_SIZE;
-			if (map.map[i][j] == '1' || map.map[a][j] == '1')
-				return (0);
-		}
-		else if (x > 0)
-		{
-			j = (map.p.x + 58) / IMG_SIZE;
-			i = map.p.y / IMG_SIZE;
-			a = (map.p.y + 58) / IMG_SIZE;
-			if (map.map[i][j] == '1' || map.map[a][j] == '1')
-				return (0);
-
-		}
+		i = y / IMG_SIZE;
+		j = (x + p_offset) / IMG_SIZE;
+		k = (y + PLAYER_SIZE) / IMG_SIZE;
+		if (map.map[i][j] == '1' || map.map[k][j] == '1')
+			return (0);	
 	}
 	else 
 	{
-		if (y < 0)
-		{
-			j = map.p.x / IMG_SIZE;
-			i = map.p.y / IMG_SIZE;
-			a = (map.p.x + 58) / IMG_SIZE;
-			if (map.map[i][j] == '1' || map.map[i][a] == '1')
-				return (0);
-		}
-		else if (y > 0)
-		{
-			j = map.p.x / IMG_SIZE;
-			i = (map.p.y + 58) / IMG_SIZE;
-			a = (map.p.x + 58) / IMG_SIZE;
-			if (map.map[i][j] == '1' || map.map[i][a] == '1')
-				return (0);
-		}
-
+		i = (y + p_offset) / IMG_SIZE;
+		j = x / IMG_SIZE;
+		k = (x + PLAYER_SIZE) / IMG_SIZE;
+		if (map.map[i][j] == '1' || map.map[i][k] == '1')
+			return (0);		
 	}
-	printf("range de movimento: x: %i  y: %i\n", map.p.x, map.p.y);
 	return (1);
 }
-

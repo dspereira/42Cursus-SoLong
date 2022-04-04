@@ -22,7 +22,12 @@ int	key_control(int keycode, t_data *data)
 
 static void up(t_data *data)
 {
-	if (is_valid_move(data->map, 0, -MOVE_RANGE))
+	int x;
+	int y;
+
+	x = data->map.p.x;
+	y = data->map.p.y - MOVE_RANGE;
+	if (is_valid_move1(data->map, x, y, UP))
 	{
 		data->map.p.y -= 10;
 		mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
@@ -32,7 +37,12 @@ static void up(t_data *data)
 
 static void down(t_data *data)
 {
-	if (is_valid_move(data->map, 0, MOVE_RANGE))
+	int x;
+	int y;
+
+	x = data->map.p.x;
+	y = data->map.p.y + MOVE_RANGE;
+	if (is_valid_move1(data->map, x, y, DOWN))
 	{
 		data->map.p.y += 10;
 		mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
@@ -42,7 +52,12 @@ static void down(t_data *data)
 
 static void left(t_data *data)
 {
-	if (is_valid_move(data->map, -MOVE_RANGE, 0))
+	int x;
+	int y;
+
+	x = data->map.p.x - MOVE_RANGE;
+	y = data->map.p.y;
+	if (is_valid_move1(data->map, x, y, LEFT))
 	{
 		data->map.p.x -= 10;
 		mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
@@ -52,7 +67,12 @@ static void left(t_data *data)
 
 static void right(t_data *data)
 {
-	if (is_valid_move(data->map, MOVE_RANGE, 0))
+	int x;
+	int y;
+
+	x = data->map.p.x + MOVE_RANGE;
+	y = data->map.p.y;
+	if (is_valid_move1(data->map, x, y, RIGHT))
 	{
 		data->map.p.x += 10;
 		mlx_put_image_to_window(data->win.mlx, data->win.mlx_win,data->imgs.player, data->map.p.x, data->map.p.y);
