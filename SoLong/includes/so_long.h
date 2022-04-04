@@ -26,6 +26,8 @@
 
 # define IMG_SIZE		60
 
+# define MOVE_RANGE		10
+
 
 enum {
 	ON_KEYDOWN = 2,
@@ -82,5 +84,8 @@ t_data game_init(t_data *data);
 
 /* key_control.c */
 int	key_control(int keycode, t_data *data);
+
+/* game_rules */
+int is_valid_move(t_map map, int x, int y);
 
 #endif

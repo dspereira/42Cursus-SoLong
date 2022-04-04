@@ -37,8 +37,9 @@ static void map_init(t_data *data)
 				mlx_put_image_to_window(data->win.mlx, data->win.mlx_win, data->imgs.tree, j * IMG_SIZE, i * IMG_SIZE);
 			else if (data->map.map[i][j] == PLAYER)
 			{
-                data->map.p.x = 60;
-	            data->map.p.y = 180;
+                data->map.p.x = j * IMG_SIZE;
+	            data->map.p.y = i * IMG_SIZE;
+				printf("p init: x: %i y: %i \n", data->map.p.x, data->map.p.y);
 				mlx_put_image_to_window(data->win.mlx, data->win.mlx_win, data->imgs.grass, j * IMG_SIZE, i * IMG_SIZE);
 				mlx_put_image_to_window(data->win.mlx, data->win.mlx_win, data->imgs.player, j * IMG_SIZE, i * IMG_SIZE);
 			}	
