@@ -95,5 +95,6 @@ int	key_control(int keycode, t_data *data);
 /* game_rules */
 int is_valid_move(t_map map, int x, int y, int d);
 void move_player(t_data *data, int x, int y);
+void clean_player(t_data data);
 
 #endif
