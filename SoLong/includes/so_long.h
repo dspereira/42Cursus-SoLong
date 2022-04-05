@@ -96,5 +96,9 @@ int	key_control(int keycode, t_data *data);
 int is_valid_move(t_map map, int x, int y, int d);
 void move_player(t_data *data, int x, int y);
 void clean_player(t_data data);
+void print_image(t_data data, int i, int j);
+void update_player_pos(t_data *data, int x, int y);
+void get_map_matrix_pos(int x, int y, int *i, int *j);
+void get_map_matrix_pos_1(int win_pos, int *map_pos);
 
 #endif
