@@ -16,6 +16,7 @@
 # define GRASS_PATH 	"./assets/grass.xpm"
 # define TREE_PATH 		"./assets/tree.xpm"
 # define PLAYER_PATH 	"./assets/player.xpm"
+# define COIN_PATH 		"./assets/coin.xpm"
 
 // KEYS for ubuntu linux 
 # define KEY_UP			119
@@ -31,7 +32,7 @@
 
 # define IMG_SIZE		60
 
-# define MOVE_RANGE		10
+# define MOVE_RANGE		20
 
 # define PLAYER_SIZE	58
 
@@ -71,6 +72,7 @@ typedef struct s_imgs
 	void *grass;
 	void *tree;
 	void *player;
+	void *coin;
 }	t_imgs; 
 
 typedef struct s_data
@@ -100,5 +102,7 @@ void print_image(t_data data, int i, int j);
 void update_player_pos(t_data *data, int x, int y);
 void get_map_matrix_pos(int x, int y, int *i, int *j);
 void get_map_matrix_pos_1(int win_pos, int *map_pos);
+//int has_collided(t_map map, t_pos pos, char c);
+void collect_collectibles(t_data *data);
 
 #endif
