@@ -95,12 +95,12 @@ t_data game_init(t_data *data);
 int	key_control(int keycode, t_data *data);
 
 /* game_rules */
-int is_valid_move(t_map map, int x, int y, int d);
-void move_player(t_data *data, int x, int y);
+int is_valid_move(t_pos pos, char **map);
+void move_player(t_data *data, t_pos p);
 void clean_player(t_data data);
 void print_image(t_data data, int i, int j);
 void update_player_pos(t_data *data, int x, int y);
-void get_map_matrix_pos(int x, int y, int *i, int *j);
+void get_map_matrix_pos(t_pos p, int *i, int *j);
 void get_map_matrix_pos_1(int win_pos, int *map_pos);
 //int has_collided(t_map map, t_pos pos, char c);
 void collect_collectibles(t_data *data);
