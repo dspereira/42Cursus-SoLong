@@ -25,18 +25,21 @@ static void assets_init(t_data *data)
 
 static void map_init(t_data *data)
 {
+	t_pos pos;
+	t_map map;
 	int i;
 	int j;
-
+	
+	map = data->map;
 	i = 0;
-	while (i < data->map.height)
+	while (i < map.height)
 	{
 		j = 0;
-		while (j < data->map.length)
+		while (j < map.length)
 		{
 			print_image(*data, i, j);
-			if (data->map.map[i][j] == PLAYER)
-				update_player_pos(data, j * IMG_SIZE, i * IMG_SIZE);
+			if (map.map[i][j] == PLAYER)
+				update_player_pos(data, *get_win_pos(i, j, &pos));
 			j++;
 		}
 		i++;

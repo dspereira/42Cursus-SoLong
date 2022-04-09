@@ -99,10 +99,12 @@ int is_valid_move(t_pos pos, char **map);
 void move_player(t_data *data, t_pos p);
 void clean_player(t_data data);
 void print_image(t_data data, int i, int j);
-void update_player_pos(t_data *data, int x, int y);
+//void update_player_pos(t_data *data, int x, int y);
+void update_player_pos(t_data *data, t_pos pos);
 void get_map_matrix_pos(t_pos p, int *i, int *j);
 void get_map_matrix_pos_1(int win_pos, int *map_pos);
 //int has_collided(t_map map, t_pos pos, char c);
 void collect_collectibles(t_data *data);
+t_pos *get_win_pos(int i, int j, t_pos *pos);
 
 #endif

@@ -25,6 +25,13 @@ void get_map_matrix_pos(t_pos p, int *i, int *j)
 	*j = p.x / IMG_SIZE;
 }
 
+t_pos *get_win_pos(int i, int j, t_pos *pos)
+{
+	pos->x = j * IMG_SIZE;
+	pos->y = i * IMG_SIZE;
+	return (pos);
+}
+
 void *get_image(t_imgs imgs, char map_comp)
 {
 	void *img;
@@ -45,14 +52,12 @@ void *get_image(t_imgs imgs, char map_comp)
 void print_image(t_data data, int i, int j)
 {
 	void *img;
-	int x;
-	int y;
+	t_pos p;
 
-	x = j * IMG_SIZE;
-	y = i * IMG_SIZE;
+	get_win_pos(i, j, &p);
 	img = get_image(data.imgs, data.map.map[i][j]);
 	if (img)
-		mlx_put_image_to_window(data.win.mlx, data.win.mlx_win, img, x, y);
+		mlx_put_image_to_window(data.win.mlx, data.win.mlx_win, img, p.x, p.y);
 }
 
 void clean_player(t_data data)
@@ -72,10 +77,16 @@ void clean_player(t_data data)
 	}
 }
 
-void update_player_pos(t_data *data, int x, int y)
+void update_player_pos1(t_data *data, int x, int y)
 {
 	data->map.p.x = x;
 	data->map.p.y = y;
+}
+
+void update_player_pos(t_data *data, t_pos pos)
+{
+	data->map.p.x = pos.x;
+	data->map.p.y = pos.y;
 }
 
 void move_player(t_data *data, t_pos p)
@@ -83,7 +94,7 @@ void move_player(t_data *data, t_pos p)
 	void *p_img;
 
 	clean_player(*data);
-	update_player_pos(data, p.x, p.y);
+	update_player_pos(data, p);
 	p_img = get_image(data->imgs, PLAYER);
 	mlx_put_image_to_window(data->win.mlx, data->win.mlx_win, p_img, p.x, p.y);
 }
