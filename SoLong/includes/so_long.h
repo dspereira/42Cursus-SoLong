@@ -15,8 +15,9 @@
 
 # define GRASS_PATH 	"./assets/grass.xpm"
 # define TREE_PATH 		"./assets/tree.xpm"
-# define PLAYER_PATH 	"./assets/player.xpm"
+# define PLAYER_PATH 	"./assets/player2.xpm"
 # define COIN_PATH 		"./assets/coin.xpm"
+# define EXIT_PATH 		"./assets/exit1.xpm"
 
 // KEYS for ubuntu linux 
 # define KEY_UP			119
@@ -36,6 +37,11 @@
 
 # define PLAYER_SIZE	58
 
+#define PLAYER_H		39
+#define PLAYER_W		19
+
+#define PLAYER_H_REAL	43
+#define PLAYER_W_REAL	25
 
 enum {
 	ON_KEYDOWN = 2,
@@ -56,6 +62,7 @@ typedef struct s_pos
 typedef struct s_map
 {
 	t_pos p;
+	int n_collect;
 	int length;
 	int height;
 	char **map;
@@ -73,6 +80,7 @@ typedef struct s_imgs
 	void *tree;
 	void *player;
 	void *coin;
+	void *exit;
 }	t_imgs; 
 
 typedef struct s_data
@@ -106,5 +114,7 @@ void get_map_matrix_pos_1(int win_pos, int *map_pos);
 //int has_collided(t_map map, t_pos pos, char c);
 void collect_collectibles(t_data *data);
 t_pos *get_win_pos(int i, int j, t_pos *pos);
+void catch_collectible(t_data *data);
+t_pos *get_player_corners_real(t_pos start_pos, t_pos *corners);
 
 #endif

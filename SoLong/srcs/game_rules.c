@@ -36,6 +36,8 @@ void *get_image(t_imgs imgs, char map_comp)
 		img = imgs.player;
 	else if (map_comp == COLLECTIBLE)
 		img = imgs.coin;
+	else if (map_comp == EXIT)
+		img = imgs.exit;
 	else 
 		img = 0;
 	return (img);	
