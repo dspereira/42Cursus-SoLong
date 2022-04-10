@@ -29,6 +29,7 @@ static void up(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	collect_collectibles(data);
+	//catch_collectible(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
@@ -41,6 +42,7 @@ static void down(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	collect_collectibles(data);
+	//catch_collectible(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
@@ -53,6 +55,7 @@ static void left(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	collect_collectibles(data);
+	//catch_collectible(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }
 
@@ -65,5 +68,6 @@ static void right(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	collect_collectibles(data);
+	//catch_collectible(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
 }

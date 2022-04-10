@@ -29,8 +29,10 @@ static void map_init(t_data *data)
 	t_map map;
 	int i;
 	int j;
+	int collect;
 	
 	map = data->map;
+	collect = 0;
 	i = 0;
 	while (i < map.height)
 	{
@@ -39,9 +41,15 @@ static void map_init(t_data *data)
 		{
 			print_image(*data, i, j);
 			if (map.map[i][j] == PLAYER)
+			{
 				update_player_pos(data, *get_win_pos(i, j, &pos));
+				map.map[i][j] = GRASS;
+			}
+			if (map.map[i][j] == COLLECTIBLE)
+				collect++;
 			j++;
 		}
 		i++;
 	}
+	data->map.n_collect = collect;
 }
