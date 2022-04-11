@@ -125,5 +125,6 @@ void collect_collectibles(t_data *data);
 t_pos *get_win_pos(int i, int j, t_pos *pos);
 void catch_collectible(t_data *data);
 t_pos *get_player_corners_real(t_pos start_pos, t_pos *corners);
+int did_player_win(t_data data);
 
 #endif

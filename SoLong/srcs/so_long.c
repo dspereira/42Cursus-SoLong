@@ -32,6 +32,11 @@ int main(int argc, char **argv)
 	}
 	data.map = get_map(argv[1]);
 	data.win.mlx = mlx_init();
+	if (data.win.mlx == 0)
+	{
+		printf("erro mlx\n");
+		return (1);
+	}	
 	data.win.mlx_win = mlx_new_window(data.win.mlx, data.map.length * IMG_SIZE, data.map.height * IMG_SIZE, "SoLong");		
 	game_init(&data);
 	mlx_hook(data.win.mlx_win, ON_KEYDOWN, 1L<<0, key_control, &data);

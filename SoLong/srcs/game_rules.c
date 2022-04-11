@@ -152,12 +152,18 @@ int touch_colletible(t_pos pos)
 	int i;
 	int j;
 
+
 	get_map_matrix_pos(pos, &i, &j);
 	get_win_pos(i, j, &p);
-	pos_s.x += pos.x + 22;
-	pos_s.y += pos.y + 22;
-	pos_e.x += pos.x + IMG_SIZE - 22;
-	pos_e.y += pos.y + IMG_SIZE - 22;
+
+	printf("coin in p X: %i  Y: %i\n", p.x, p.y);
+	pos_s.x = p.x + 20;
+	pos_s.y = p.y + 20;
+	printf("coin in pos_s X: %i  Y: %i\n", pos_s.x, pos_s.y);
+	pos_e.x = p.x + IMG_SIZE - 20;
+	pos_e.y = p.y + IMG_SIZE - 20;
+	printf("coin in pos_e X: %i  Y: %i\n", pos_e.x, pos_e.y);
+
 	if ((pos.x > pos_s.x && pos.x < pos_e.x)
 		&& (pos.y > pos_s.y && pos.y < pos_e.y))
 		return (1);
@@ -178,7 +184,7 @@ void catch_collectible(t_data *data)
 		{
 			if (touch_colletible(pos[i]))
 			{
-
+				printf("----FUNCIONA----\n");
 			}
 		}
 		i++;
@@ -217,4 +223,25 @@ t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 	corners[3].x = start_pos.x + PLAYER_W;
 	corners[3].y = start_pos.y + PLAYER_H;
 	return (corners);
+}
+
+int did_player_win(t_data data)
+{
+	int n_coins;
+	t_pos p[4];
+	int i;
+
+	n_coins = data.map.n_collect;
+	get_player_corners(data.map.p, p);
+	i = 0;
+	while (i < 4)
+	{
+		if (has_collided(p[i], data.map.map, EXIT))
+		{
+			if (n_coins == 0)
+				return (1);
+		}
+		i++;
+	}	
+	return (0);
 }
