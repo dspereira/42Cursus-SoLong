@@ -7,6 +7,7 @@ t_data game_init(t_data *data)
 {
     assets_init(data);
     map_init(data);
+	return (*data);
 }
 
 static void assets_init(t_data *data)

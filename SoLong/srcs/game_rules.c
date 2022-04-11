@@ -46,12 +46,17 @@ void *get_image(t_imgs imgs, char map_comp)
 void print_image(t_data data, int i, int j)
 {
 	void *img;
+	void *g_img;
 	t_pos p;
 
 	get_win_pos(i, j, &p);
 	img = get_image(data.imgs, data.map.map[i][j]);
-	if (img)
+	g_img = get_image(data.imgs, GRASS);
+	if (img && g_img)
+	{
+		mlx_put_image_to_window(data.win.mlx, data.win.mlx_win, g_img, p.x, p.y);
 		mlx_put_image_to_window(data.win.mlx, data.win.mlx_win, img, p.x, p.y);
+	}
 }
 
 void clean_player(t_data data)
@@ -61,8 +66,7 @@ void clean_player(t_data data)
 	int j;
 	int a;
 
-	//get_player_corners(data.map.p, p);
-	get_player_corners_real(data.map.p, p);
+	get_player_corners(data.map.p, p);
 	a = 0;
 	while(a < 4)
 	{
@@ -204,7 +208,6 @@ void collect_collectibles(t_data *data)
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {
-
 	corners[0].x = start_pos.x;
 	corners[0].y = start_pos.y;
 	corners[1].x = start_pos.x + PLAYER_W;
@@ -213,38 +216,5 @@ t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 	corners[2].y = start_pos.y + PLAYER_H;
 	corners[3].x = start_pos.x + PLAYER_W;
 	corners[3].y = start_pos.y + PLAYER_H;
-
-	int i = 0;
-	printf("-----------------------\n");
-	while (i < 4)
-	{
-		printf("CORNORS: X: %i  Y: %i\n", corners[i].x, corners[i].y);
-		i++;
-	}
-
-	/*
-	corners[0].x = start_pos.x;
-	corners[0].y = start_pos.y;
-	corners[1].x = start_pos.x + PLAYER_SIZE;
-	corners[1].y = start_pos.y;
-	corners[2].x = start_pos.x;
-	corners[2].y = start_pos.y + PLAYER_SIZE;
-	corners[3].x = start_pos.x + PLAYER_SIZE;
-	corners[3].y = start_pos.y + PLAYER_SIZE;
-	*/
-	return (corners);
-}
-
-t_pos *get_player_corners_real(t_pos start_pos, t_pos *corners)
-{
-
-	corners[0].x = start_pos.x;
-	corners[0].y = start_pos.y;
-	corners[1].x = start_pos.x + PLAYER_W_REAL;
-	corners[1].y = start_pos.y;
-	corners[2].x = start_pos.x;
-	corners[2].y = start_pos.y + PLAYER_H_REAL;
-	corners[3].x = start_pos.x + PLAYER_W_REAL;
-	corners[3].y = start_pos.y + PLAYER_H_REAL;
 	return (corners);
 }
