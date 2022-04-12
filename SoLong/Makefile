@@ -17,12 +17,12 @@ MLX_F_LINUX1	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -
 RM				= rm -f
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(MLX_MACOS) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_F_LINUX) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(MLX_MACOS1) -o $(NAME)
+	$(CC) $(OBJS) $(MLX_F_LINUX1) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

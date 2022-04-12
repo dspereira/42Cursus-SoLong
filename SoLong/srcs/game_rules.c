@@ -59,6 +59,16 @@ void print_image(t_data data, int i, int j)
 	}
 }
 
+void print_player(t_data data)
+{
+	void *p_img;
+	t_pos pos;
+
+	p_img = data.imgs.player;
+	pos = data.map.p;
+	mlx_put_image_to_window(data.win.mlx, data.win.mlx_win, p_img, pos.x, pos.y);
+}
+
 void clean_player(t_data data)
 {
 	t_pos p[4];
@@ -133,15 +143,15 @@ int single_point_collision(t_pos pos, char **map, char c)
 	return (0);
 }
 
-
-int clean_coin(t_data *data, t_pos p)
+void clean_coin(t_data *data, t_pos p)
 {
 	int i;
 	int j;
 	get_map_matrix_pos(p, &i, &j);
 	if (data->map.map[i][j] == COLLECTIBLE)
 		data->map.map[i][j] = GRASS;
-	return (1);
+	print_image(*data, i, j);
+	print_player(*data);
 }
 
 int corner_intersection_num(int *corner)
@@ -199,30 +209,6 @@ void catch_collectible(t_data *data)
 		data->map.n_collect--;
 	}
 }
-
-
-/*
-void collect_collectibles(t_data *data)
-{
-	t_pos p[4];
-	int i;
-
-	get_player_corners(data->map.p, p);
-	i = 0;
-	while (i < 4)
-	{
-		if (has_collided(p[i], data->map.map, COLLECTIBLE))
-			break;
-		i++;
-	}
-	if (i < 4)
-	{
-		clean_coin(data, p[i]);
-		data->map.n_collect--;
-		printf("coins missing: %i\n", data->map.n_collect);
-	}
-}
-*/
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {

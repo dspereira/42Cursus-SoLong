@@ -16,8 +16,8 @@
 # define GRASS_PATH 	"./assets/grass.xpm"
 # define TREE_PATH 		"./assets/tree.xpm"
 # define PLAYER_PATH 	"./assets/player.xpm"
-# define COIN_PATH 		"./assets/coin2.xpm"
-# define EXIT_PATH 		"./assets/exit1.xpm"
+# define COIN_PATH 		"./assets/coin.xpm"
+# define EXIT_PATH 		"./assets/exit.xpm"
 
 // KEYS for ubuntu linux 
 # define KEY_UP			119
