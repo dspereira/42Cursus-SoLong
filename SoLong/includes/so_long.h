@@ -15,25 +15,25 @@
 
 # define GRASS_PATH 	"./assets/grass.xpm"
 # define TREE_PATH 		"./assets/tree.xpm"
-# define PLAYER_PATH 	"./assets/player_60.xpm"
-# define COIN_PATH 		"./assets/coin.xpm"
+# define PLAYER_PATH 	"./assets/player.xpm"
+# define COIN_PATH 		"./assets/coin2.xpm"
 # define EXIT_PATH 		"./assets/exit1.xpm"
 
 // KEYS for ubuntu linux 
-/*
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-*/
 
 // KEYS for ubuntu linux 
+/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
+*/
 
 # define UP				0
 # define DOWN			1
@@ -47,10 +47,10 @@
 # define PLAYER_SIZE	58
 
 #define PLAYER_H		59
-#define PLAYER_W		37
+#define PLAYER_W		39
 
 #define PLAYER_H_REAL	59
-#define PLAYER_W_REAL	37
+#define PLAYER_W_REAL	39
 
 enum {
 	ON_KEYDOWN = 2,

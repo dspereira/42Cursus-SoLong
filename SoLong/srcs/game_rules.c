@@ -139,58 +139,69 @@ int clean_coin(t_data *data, t_pos p)
 	int i;
 	int j;
 	get_map_matrix_pos(p, &i, &j);
-	data->map.map[i][j] = GRASS;
+	if (data->map.map[i][j] == COLLECTIBLE)
+		data->map.map[i][j] = GRASS;
 	return (1);
 }
 
-// Função inacabada
-int touch_colletible(t_pos pos)
+int corner_intersection_num(int *corner)
 {
-	t_pos p;
-	t_pos pos_s;
-	t_pos pos_e;
 	int i;
-	int j;
+	int n;
 
-
-	get_map_matrix_pos(pos, &i, &j);
-	get_win_pos(i, j, &p);
-
-	printf("coin in p X: %i  Y: %i\n", p.x, p.y);
-	pos_s.x = p.x + 20;
-	pos_s.y = p.y + 20;
-	printf("coin in pos_s X: %i  Y: %i\n", pos_s.x, pos_s.y);
-	pos_e.x = p.x + IMG_SIZE - 20;
-	pos_e.y = p.y + IMG_SIZE - 20;
-	printf("coin in pos_e X: %i  Y: %i\n", pos_e.x, pos_e.y);
-
-	if ((pos.x > pos_s.x && pos.x < pos_e.x)
-		&& (pos.y > pos_s.y && pos.y < pos_e.y))
-		return (1);
-	return (0);
+	n = 0;
+	i = 0;
+	while (i < 4)
+	{
+		if (corner[i])
+			n++;
+		i++;
+	}
+	return (n);
 }
 
-// Função inacabada
+t_pos get_intersection_point(t_pos *pos, int *conors)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (conors[i])
+			break;
+		i++;
+	}
+	return (pos[i]);
+}
+
 void catch_collectible(t_data *data)
 {
 	t_pos pos[4];
+	int corners[4];
+	int num;
 	int i;
-
+	
 	get_player_corners(data->map.p, pos);
 	i = 0;
 	while (i < 4)
 	{
+		corners[i] = 0;
 		if (has_collided(pos[i], data->map.map, COLLECTIBLE))
-		{
-			if (touch_colletible(pos[i]))
-			{
-				printf("----FUNCIONA----\n");
-			}
-		}
+			corners[i] = 1;
 		i++;
+	}
+	num = corner_intersection_num(corners);
+	if (num >= 2)
+	{	
+		if (num == 2 && ((corners[0] && corners[2]) || (corners[1] && corners[3])))
+			return ;
+		clean_coin(data, get_intersection_point(pos, corners));
+		data->map.n_collect--;
 	}
 }
 
+
+/*
 void collect_collectibles(t_data *data)
 {
 	t_pos p[4];
@@ -211,6 +222,7 @@ void collect_collectibles(t_data *data)
 		printf("coins missing: %i\n", data->map.n_collect);
 	}
 }
+*/
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {
