@@ -11,7 +11,7 @@ static void clean_coin(t_data *data, t_pos p)
 	print_img(*data, data->map.p, PLAYER);
 }
 
-int corner_intersection_num(int *corner)
+static int corner_intersection_num(int *corner)
 {
 	int i;
 	int n;
@@ -27,7 +27,7 @@ int corner_intersection_num(int *corner)
 	return (n);
 }
 
-t_pos get_intersection_point(t_pos *pos, int *conors)
+static t_pos get_intersection_point(t_pos *pos, int *conors)
 {
 	int i;
 
