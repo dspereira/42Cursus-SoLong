@@ -7,7 +7,7 @@ static void clean_coin(t_data *data, t_pos p)
 	get_map_pos(p, &i, &j);
 	if (data->map.map[i][j] == COLLECTIBLE)
 		data->map.map[i][j] = GRASS;
-	print_from_map(*data, i, j);
+	print_img_from_map(*data, i, j);
 	print_img(*data, data->map.p, PLAYER);
 }
 

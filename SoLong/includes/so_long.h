@@ -129,8 +129,8 @@ void catch_coin(t_data *data);
 int is_collision(t_pos p, char **map, char c);
 int is_player_collision(t_pos start_p, char **map, char c);
 
-/* print.c */
-void print_from_map(t_data data, int i, int j);
+/* print_img.c */
+void print_img_from_map(t_data data, int i, int j);
 void print_img(t_data data, t_pos pos, char c_img);
 void clean_player(t_data data);
 

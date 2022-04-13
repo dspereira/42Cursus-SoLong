@@ -41,7 +41,7 @@ static void map_init(t_data *data)
 		j = 0;
 		while (j < map.length)
 		{
-			print_from_map(*data, i, j);
+			print_img_from_map(*data, i, j);
 			if (map.map[i][j] == PLAYER)
 			{
 				update_player_pos(data, *get_window_pos(i, j, &pos));
