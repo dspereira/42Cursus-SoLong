@@ -41,10 +41,10 @@ static void map_init(t_data *data)
 		j = 0;
 		while (j < map.length)
 		{
-			print_image(*data, i, j);
+			print_from_map(*data, i, j);
 			if (map.map[i][j] == PLAYER)
 			{
-				update_player_pos(data, *get_win_pos(i, j, &pos));
+				update_player_pos(data, *get_window_pos(i, j, &pos));
 				map.map[i][j] = GRASS;
 			}
 			if (map.map[i][j] == COLLECTIBLE)

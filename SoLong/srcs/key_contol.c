@@ -29,9 +29,9 @@ static void up(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	//collect_collectibles(data);
-	catch_collectible(data);
+	catch_coin(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
-	if(did_player_win(*data))
+	if(is_player_win(*data))
 	{
 		printf("++++Ganhou++++\n");
 		mlx_destroy_window(data->win.mlx, data->win.mlx_win);
@@ -49,9 +49,9 @@ static void down(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	//collect_collectibles(data);
-	catch_collectible(data);
+	catch_coin(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
-	if(did_player_win(*data))
+	if(is_player_win(*data))
 	{
 		printf("++++Ganhou++++\n");
 		mlx_destroy_window(data->win.mlx, data->win.mlx_win);
@@ -68,10 +68,10 @@ static void left(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	//collect_collectibles(data);
-	catch_collectible(data);
-	catch_collectible(data);
+	catch_coin(data);
+	catch_coin(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
-	if(did_player_win(*data))
+	if(is_player_win(*data))
 	{
 		printf("++++Ganhou++++\n");
 		mlx_destroy_window(data->win.mlx, data->win.mlx_win);
@@ -88,10 +88,10 @@ static void right(t_data *data)
 	if (is_valid_move(p, data->map.map))
 		move_player(data, p);
 	//collect_collectibles(data);
-	catch_collectible(data);
-	catch_collectible(data);
+	catch_coin(data);
+	catch_coin(data);
 	printf("player pos: x:%i y:%i\n", data->map.p.x, data->map.p.y);
-	if(did_player_win(*data))
+	if(is_player_win(*data))
 	{
 		printf("++++Ganhou++++\n");
 		mlx_destroy_window(data->win.mlx, data->win.mlx_win);

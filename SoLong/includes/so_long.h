@@ -114,17 +114,36 @@ int	key_control(int keycode, t_data *data);
 /* game_rules */
 int is_valid_move(t_pos pos, char **map);
 void move_player(t_data *data, t_pos p);
-void clean_player(t_data data);
-void print_image(t_data data, int i, int j);
 //void update_player_pos(t_data *data, int x, int y);
 void update_player_pos(t_data *data, t_pos pos);
-void get_map_matrix_pos(t_pos p, int *i, int *j);
-void get_map_matrix_pos_1(int win_pos, int *map_pos);
 //int has_collided(t_map map, t_pos pos, char c);
 void collect_collectibles(t_data *data);
-t_pos *get_win_pos(int i, int j, t_pos *pos);
-void catch_collectible(t_data *data);
-t_pos *get_player_corners_real(t_pos start_pos, t_pos *corners);
-int did_player_win(t_data data);
+int has_collided(t_pos p, char **map, char c);
+
+
+
+/* catch_coin.c */
+void catch_coin(t_data *data);
+
+/* collision.c */
+int is_collision(t_pos p, char **map, char c);
+int is_player_collision(t_pos start_p, char **map, char c);
+
+/* print.c */
+void print_from_map(t_data data, int i, int j);
+void print_img(t_data data, t_pos pos, char c_img);
+void clean_player(t_data data);
+
+/* game_utils.c */
+void get_map_pos(t_pos pos, int *i, int *j);
+t_pos *get_window_pos(int i, int j, t_pos *pos);
+t_pos *get_player_corners(t_pos start_pos, t_pos *corners);
+
+/* player_move.c */
+int is_valid_move(t_pos pos, char **map);
+void update_player_pos(t_data *data, t_pos pos);
+void move_player(t_data *data, t_pos p);
+// Deve ter um ficheiro que valida se ganhou ou perdeu
+int is_player_win(t_data data);
 
 #endif
