@@ -45,7 +45,7 @@ static t_map get_map_from_file(char *path)
 
 	map.height = get_num_lines(path);
 	if(map.height)
-		map.map = malloc((map.height) * sizeof(char *));
+		map.map = oom_guard(malloc((map.height) * sizeof(char *)));
 	fd = open(path, O_RDONLY);
 	i = 0;
 	while (i < map.height)
@@ -71,8 +71,10 @@ void free_map(t_map map)
 	i = 0;
 	while (i < map.height)
 	{
-		free(map.map[i]);
+		if (map.map[i])
+			free(map.map[i]);
 		i++;
 	}
-	free(map.map);
+	if (map.map)
+		free(map.map);
 }

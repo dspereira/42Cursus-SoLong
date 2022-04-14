@@ -138,4 +138,7 @@ void move_player(t_data *data, t_pos p);
 void make_move(t_data *data, int x_offset, int y_offset);
 void finish_game(t_data data);
 
+/* error_handling.c */
+void	*oom_guard(void *p);
+
 #endif
