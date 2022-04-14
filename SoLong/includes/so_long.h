@@ -15,7 +15,22 @@
 
 # define GRASS_PATH 	"./assets/grass.xpm"
 # define TREE_PATH 		"./assets/tree.xpm"
-# define PLAYER_PATH 	"./assets/player.xpm"
+
+/* player assets */
+# define P_DOWN_0_PATH 	"./assets/player/p_down_0.xpm"
+# define P_DOWN_1_PATH 	"./assets/player/p_down_1.xpm"
+# define P_DOWN_2_PATH 	"./assets/player/p_down_2.xpm"
+# define P_UP_0_PATH 	"./assets/player/p_up_0.xpm"
+# define P_UP_1_PATH 	"./assets/player/p_up_1.xpm"
+# define P_UP_2_PATH 	"./assets/player/p_up_2.xpm"
+# define P_LEFT_0_PATH 	"./assets/player/p_left_0.xpm"
+# define P_LEFT_1_PATH 	"./assets/player/p_left_1.xpm"
+# define P_LEFT_2_PATH 	"./assets/player/p_left_2.xpm"
+# define P_RIGHT_0_PATH "./assets/player/p_right_0.xpm"
+# define P_RIGHT_1_PATH "./assets/player/p_right_1.xpm"
+# define P_RIGHT_2_PATH "./assets/player/p_right_2.xpm"
+
+
 # define COIN_PATH 		"./assets/coin.xpm"
 # define EXIT_PATH 		"./assets/exit.xpm"
 
@@ -52,7 +67,8 @@
 #define PLAYER_H_REAL	59
 #define PLAYER_W_REAL	39
 
-enum {
+enum 
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -61,6 +77,24 @@ enum {
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
+/*
+enum sprites
+{
+	UP_0, 
+	UP_1, 
+	UP_2, 
+	DOWN_0, 
+	DOWN_1, 
+	DOWN_2, 
+	RIGHT_0,
+	RIGHT_1,
+	RIGHT_2,
+	LEFT_0,
+	LEFT_1,
+	LEFT_2
+};
+*/
 
 typedef struct s_pos
 {
@@ -87,9 +121,10 @@ typedef struct s_imgs
 {
 	void *grass;
 	void *tree;
-	void *player;
 	void *coin;
 	void *exit;
+	void *player;
+
 }	t_imgs; 
 
 typedef struct s_data

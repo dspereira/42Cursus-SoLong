@@ -20,9 +20,12 @@ static void assets_init(t_data *data)
 	win = data->win;
 	data->imgs.grass = mlx_xpm_file_to_image(win.mlx, GRASS_PATH, &w, &h);
 	data->imgs.tree = mlx_xpm_file_to_image(win.mlx, TREE_PATH, &w, &h);
-	data->imgs.player = mlx_xpm_file_to_image(win.mlx, PLAYER_PATH, &w, &h);
 	data->imgs.coin = mlx_xpm_file_to_image(win.mlx, COIN_PATH, &w, &h);
 	data->imgs.exit = mlx_xpm_file_to_image(win.mlx, EXIT_PATH, &w, &h);
+
+	data->imgs.player = mlx_xpm_file_to_image(win.mlx, P_UP_0_PATH, &w, &h);
+	//data->imgs.player[1] = mlx_xpm_file_to_image(win.mlx, P_DOWN_1_PATH, &w, &h);
+	//data->imgs.player[2] = mlx_xpm_file_to_image(win.mlx, P_DOWN_2_PATH, &w, &h);
 }
 
 static void map_init(t_data *data)

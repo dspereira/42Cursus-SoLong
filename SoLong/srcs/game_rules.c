@@ -27,7 +27,7 @@ void finish_game(t_data data)
 	mlx_destroy_image(data.win.mlx, data.imgs.coin);
 	mlx_destroy_image(data.win.mlx, data.imgs.exit);
 	mlx_destroy_image(data.win.mlx, data.imgs.grass);
-	mlx_destroy_image(data.win.mlx, data.imgs.player);
+	//mlx_destroy_image(data.win.mlx, data.imgs.player);
 	mlx_destroy_image(data.win.mlx, data.imgs.tree);
 	mlx_destroy_window(data.win.mlx, data.win.mlx_win);
 	free_map(data.map);
