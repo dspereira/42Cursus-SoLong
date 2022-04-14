@@ -101,6 +101,7 @@ typedef struct s_data
 
 /* get_map.c */
 t_map get_map(char *map_path);
+void free_map(t_map map);
 
 /* map_validations.c*/
 int map_validation(t_map map);
@@ -110,17 +111,6 @@ t_data game_init(t_data *data);
 
 /* key_control.c */
 int	key_control(int keycode, t_data *data);
-
-/* game_rules */
-int is_valid_move(t_pos pos, char **map);
-void move_player(t_data *data, t_pos p);
-//void update_player_pos(t_data *data, int x, int y);
-void update_player_pos(t_data *data, t_pos pos);
-//int has_collided(t_map map, t_pos pos, char c);
-void collect_collectibles(t_data *data);
-int has_collided(t_pos p, char **map, char c);
-
-
 
 /* catch_coin.c */
 void catch_coin(t_data *data);
@@ -140,10 +130,12 @@ t_pos *get_window_pos(int i, int j, t_pos *pos);
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners);
 
 /* player_move.c */
-int is_valid_move(t_pos pos, char **map);
 void update_player_pos(t_data *data, t_pos pos);
 void move_player(t_data *data, t_pos p);
-// Deve ter um ficheiro que valida se ganhou ou perdeu
-int is_player_win(t_data data);
+
+
+/* game_rules.c */
+void make_move(t_data *data, int x_offset, int y_offset);
+void finish_game(t_data data);
 
 #endif

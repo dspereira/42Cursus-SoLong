@@ -47,20 +47,3 @@ void print_img(t_data data, t_pos pos, char c_img)
 	if (p_img)
 		mlx_put_image_to_window(win.mlx, win.mlx_win, p_img, pos.x, pos.y);
 }
-
-void clean_player(t_data data)
-{
-	t_pos p[4];
-	int i;
-	int j;
-	int a;
-
-	get_player_corners(data.map.p, p);
-	a = 0;
-	while(a < 4)
-	{
-		get_map_pos(p[a], &i, &j);
-		print_img_from_map(data, i, j);
-		a++;
-	}
-}
