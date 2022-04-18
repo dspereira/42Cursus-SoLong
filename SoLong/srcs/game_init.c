@@ -3,29 +3,24 @@
 static void assets_init(t_data *data);
 static void map_init(t_data *data);
 
+void add_img(t_data *data, int i, char *path);
+void imgs_init(t_data *data);
+
+
 t_data game_init(t_data *data)
 {
-    assets_init(data);
+	imgs_init(data);
     map_init(data);
-	return (*data);
-}
-
-static void assets_init(t_data *data)
-{
-	t_imgs imgs;
-	t_win win;
-	int w;
-	int h;
 	
-	win = data->win;
-	data->imgs.grass = mlx_xpm_file_to_image(win.mlx, GRASS_PATH, &w, &h);
-	data->imgs.tree = mlx_xpm_file_to_image(win.mlx, TREE_PATH, &w, &h);
-	data->imgs.coin = mlx_xpm_file_to_image(win.mlx, COIN_PATH, &w, &h);
-	data->imgs.exit = mlx_xpm_file_to_image(win.mlx, EXIT_PATH, &w, &h);
 
-	data->imgs.player = mlx_xpm_file_to_image(win.mlx, P_UP_0_PATH, &w, &h);
-	//data->imgs.player[1] = mlx_xpm_file_to_image(win.mlx, P_DOWN_1_PATH, &w, &h);
-	//data->imgs.player[2] = mlx_xpm_file_to_image(win.mlx, P_DOWN_2_PATH, &w, &h);
+	int i = 0;
+	while (i < 10)
+	{
+		printf("teste: |%s|\n", data->imgs_1[i].path);
+		printf("img: %p\n", data->imgs_1[i].img);
+		i++;
+	}
+	return (*data);
 }
 
 static void map_init(t_data *data)
@@ -57,4 +52,45 @@ static void map_init(t_data *data)
 		i++;
 	}
 	data->map.n_collect = collect;
+}
+
+void add_img(t_data *data, int i, char *path)
+{
+	t_win win;
+	t_img_1 *img;
+	int w;
+	int h;
+
+	win = data->win;
+	img = data->imgs_1;
+	ft_strlcpy(img[i].path, path, ft_strlen(path) + 1);	
+	img[i].img = mlx_xpm_file_to_image(win.mlx, img[i].path, &w, &h);
+}
+
+void imgs_init(t_data *data)
+{
+	int i;
+
+	i = 0;
+	add_img(data, i++, "./assets/grass.xpm");
+	add_img(data, i++, "./assets/tree.xpm");
+	add_img(data, i++, "./assets/coin.xpm");
+	add_img(data, i++, "./assets/exit.xpm");
+	add_img(data, i++, "./assets/player/p_up_0.xpm");
+	add_img(data, i++, "./assets/player/p_up_1.xpm");
+	add_img(data, i++, "./assets/player/p_up_2.xpm");
+	add_img(data, i++, "./assets/player/p_down_0.xpm");
+	add_img(data, i++, "./assets/player/p_down_1.xpm");
+	add_img(data, i++, "./assets/player/p_down_2.xpm");
+	add_img(data, i++, "./assets/player/p_left_0.xpm");
+	add_img(data, i++, "./assets/player/p_left_1.xpm");
+	add_img(data, i++, "./assets/player/p_left_2.xpm");
+	add_img(data, i++, "./assets/player/p_right_0.xpm");
+	add_img(data, i++, "./assets/player/p_right_1.xpm");
+	add_img(data, i++, "./assets/player/p_right_2.xpm");
+}
+
+void *get_img(t_data data, int index)
+{
+	return (data.imgs_1[index].img);
 }

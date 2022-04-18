@@ -13,27 +13,6 @@
 # define GRASS			'0'
 # define TREE			'1'
 
-# define GRASS_PATH 	"./assets/grass.xpm"
-# define TREE_PATH 		"./assets/tree.xpm"
-
-/* player assets */
-# define P_DOWN_0_PATH 	"./assets/player/p_down_0.xpm"
-# define P_DOWN_1_PATH 	"./assets/player/p_down_1.xpm"
-# define P_DOWN_2_PATH 	"./assets/player/p_down_2.xpm"
-# define P_UP_0_PATH 	"./assets/player/p_up_0.xpm"
-# define P_UP_1_PATH 	"./assets/player/p_up_1.xpm"
-# define P_UP_2_PATH 	"./assets/player/p_up_2.xpm"
-# define P_LEFT_0_PATH 	"./assets/player/p_left_0.xpm"
-# define P_LEFT_1_PATH 	"./assets/player/p_left_1.xpm"
-# define P_LEFT_2_PATH 	"./assets/player/p_left_2.xpm"
-# define P_RIGHT_0_PATH "./assets/player/p_right_0.xpm"
-# define P_RIGHT_1_PATH "./assets/player/p_right_1.xpm"
-# define P_RIGHT_2_PATH "./assets/player/p_right_2.xpm"
-
-
-# define COIN_PATH 		"./assets/coin.xpm"
-# define EXIT_PATH 		"./assets/exit.xpm"
-
 // KEYS for ubuntu linux 
 # define KEY_UP			119
 # define KEY_DOWN		115
@@ -49,11 +28,12 @@
 # define KEY_RIGHT		2
 # define KEY_ESC		53
 */
-
+/*
 # define UP				0
 # define DOWN			1
 # define LEFT			2
 # define RIGHT			3
+*/
 
 # define IMG_SIZE		60
 
@@ -77,6 +57,33 @@ enum
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
+enum Index_image
+{
+	GRASS_1,
+	TREE_1,
+	COIN_1,
+	EXIT_1,
+	P_UP_0,
+	P_UP_1,
+	P_UP_2,
+	P_DOWN_0,
+	P_DOWN_1,
+	P_DOWN_2,
+	P_LEFT_0,
+	P_LEFT_1,
+	P_LEFT_2,
+	P_RIGHT_0,
+	P_RIGHT_1,
+	P_RIGHT_2
+};
+
+typedef struct s_img_1
+{
+	char path[50];
+	void *img;
+}	t_img_1;
+
 
 /*
 enum sprites
@@ -132,6 +139,7 @@ typedef struct s_data
 	t_map	map;
 	t_win	win;
 	t_imgs	imgs;
+	t_img_1 imgs_1[20];
 }	t_data;
 
 /* get_map.c */
@@ -170,10 +178,19 @@ void move_player(t_data *data, t_pos p);
 
 
 /* game_rules.c */
-void make_move(t_data *data, int x_offset, int y_offset);
+void make_move(t_data *data, int x_offset, int y_offset, int dir);
 void finish_game(t_data data);
 
 /* error_handling.c */
 void	*oom_guard(void *p);
+
+// decidir onde colocar esta função
+void *get_img(t_data data, int index);
+
+
+
+void move_player1(t_data *data, t_pos p, int dir);
+
+void print_img_by_index(t_data data, t_pos pos, int img_index);
 
 #endif

@@ -3,7 +3,7 @@
 static int is_valid_move(t_pos pos, char **map);
 static int is_win(t_data data);
 
-void make_move(t_data *data, int x_offset, int y_offset)
+void make_move(t_data *data, int x_offset, int y_offset, int dir)
 {
 	t_pos p;
 	t_map map;
@@ -12,7 +12,7 @@ void make_move(t_data *data, int x_offset, int y_offset)
 	p.x = map.p.x + x_offset;
 	p.y = map.p.y + y_offset;
 	if (is_valid_move(p, map.map))
-		move_player(data, p);
+		move_player1(data, p, dir);
 	if (is_player_collision(map.p, map.map, COLLECTIBLE))
 	{
 		catch_coin(data);
@@ -24,13 +24,14 @@ void make_move(t_data *data, int x_offset, int y_offset)
 
 void finish_game(t_data data)
 {
-	mlx_destroy_image(data.win.mlx, data.imgs.coin);
+	/*mlx_destroy_image(data.win.mlx, data.imgs.coin);
 	mlx_destroy_image(data.win.mlx, data.imgs.exit);
 	mlx_destroy_image(data.win.mlx, data.imgs.grass);
-	//mlx_destroy_image(data.win.mlx, data.imgs.player);
+	mlx_destroy_image(data.win.mlx, data.imgs.player);
 	mlx_destroy_image(data.win.mlx, data.imgs.tree);
-	mlx_destroy_window(data.win.mlx, data.win.mlx_win);
+	mlx_destroy_window(data.win.mlx, data.win.mlx_win);*/
 	free_map(data.map);
+	free(data.win.mlx);
 	exit(0);	
 }
 
