@@ -1,6 +1,5 @@
 #include "so_long.h"
 
-static int is_valid_move(t_pos pos, char **map);
 static int is_win(t_data data);
 
 void make_move(t_data *data, int x_offset, int y_offset, int dir)
@@ -35,7 +34,7 @@ void finish_game(t_data data)
 	exit(0);	
 }
 
-static int is_valid_move(t_pos pos, char **map)
+int is_valid_move(t_pos pos, char **map)
 {
 	if (is_player_collision(pos, map, TREE))
 		return (0);

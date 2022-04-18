@@ -11,15 +11,6 @@ t_data game_init(t_data *data)
 {
 	imgs_init(data);
     map_init(data);
-	
-
-	int i = 0;
-	while (i < 10)
-	{
-		printf("teste: |%s|\n", data->imgs_1[i].path);
-		printf("img: %p\n", data->imgs_1[i].img);
-		i++;
-	}
 	return (*data);
 }
 
@@ -45,7 +36,13 @@ static void map_init(t_data *data)
 				update_player_pos(data, *get_window_pos(i, j, &pos));
 				map.map[i][j] = GRASS;
 			}
-			if (map.map[i][j] == COLLECTIBLE)
+			else if (map.map[i][j] == ENEMY)
+			{
+				get_window_pos(i, j, &pos);
+				data->e_pos = pos;
+				map.map[i][j] = GRASS;
+			}
+			else if (map.map[i][j] == COLLECTIBLE)
 				collect++;
 			j++;
 		}
@@ -88,6 +85,7 @@ void imgs_init(t_data *data)
 	add_img(data, i++, "./assets/player/p_right_0.xpm");
 	add_img(data, i++, "./assets/player/p_right_1.xpm");
 	add_img(data, i++, "./assets/player/p_right_2.xpm");
+	add_img(data, i++, "./assets/enemy.xpm");
 }
 
 void *get_img(t_data data, int index)

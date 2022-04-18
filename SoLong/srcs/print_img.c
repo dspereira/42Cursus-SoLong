@@ -16,7 +16,9 @@ static void *get_map_img(t_data data, char map_comp)
 		img = get_img(data, COIN_1);
 	else if (map_comp == EXIT)
 		img = get_img(data, EXIT_1);
-	else 
+	else if (map_comp == ENEMY)
+		img = get_img(data, ENEMY_0);
+	else
 		img = 0;
 
 	return (img);	

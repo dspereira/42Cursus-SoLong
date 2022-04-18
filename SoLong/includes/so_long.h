@@ -5,6 +5,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <mlx.h>
+#include <time.h>
 #include "../get_next_line/get_next_line.h"
 
 # define COLLECTIBLE	'C'
@@ -12,6 +13,7 @@
 # define PLAYER			'P'
 # define GRASS			'0'
 # define TREE			'1'
+# define ENEMY			'O'
 
 // KEYS for ubuntu linux 
 # define KEY_UP			119
@@ -75,7 +77,8 @@ enum Index_image
 	P_LEFT_2,
 	P_RIGHT_0,
 	P_RIGHT_1,
-	P_RIGHT_2
+	P_RIGHT_2,
+	ENEMY_0
 };
 
 typedef struct s_img_1
@@ -140,6 +143,7 @@ typedef struct s_data
 	t_win	win;
 	t_imgs	imgs;
 	t_img_1 imgs_1[20];
+	t_pos 	e_pos;
 }	t_data;
 
 /* get_map.c */
@@ -192,5 +196,9 @@ void *get_img(t_data data, int index);
 void move_player1(t_data *data, t_pos p, int dir);
 
 void print_img_by_index(t_data data, t_pos pos, int img_index);
+
+int key_up(int keycode, t_data *data);
+
+int is_valid_move(t_pos pos, char **map);
 
 #endif

@@ -53,8 +53,6 @@ void move_player1(t_data *data, t_pos p, int dir)
 	i++;
 }
 
-
-
 void clean_player(t_data data)
 {
 	t_pos p[4];
