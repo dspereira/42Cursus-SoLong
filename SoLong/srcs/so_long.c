@@ -68,10 +68,10 @@ int enemy_call(t_data *data)
 	r = 0;
 	m = 0;
 	i++;
-	if (i >= 10000)
+	if (i >= 20000)
 	{
 			srand(time(NULL) + i);
-			r = rand() % 5;
+			r = rand() % 4;
 			if (r == 0)
 			{
 				if (data->map.p.x < data->e_pos.x)
@@ -100,11 +100,15 @@ int enemy_call(t_data *data)
 					y = 20;
 			}
 			m = make_move_1(data, x, y);
-			printf("valor x: %i y: %i\n", x, y);
-			printf("direction: %i\n", r);
+			//printf("valor x: %i y: %i\n", x, y);
+			//printf("direction: %i\n", r);
 			if (m)
 				i = 0;
+	
+		if (enemy_collision(data->map.p, data->e_pos))
+		printf("INTERSETOU !\n");
 	}
+
 }
 
 int main(int argc, char **argv)

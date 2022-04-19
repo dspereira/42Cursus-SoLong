@@ -201,4 +201,6 @@ int key_up(int keycode, t_data *data);
 
 int is_valid_move(t_pos pos, char **map);
 
+int enemy_collision(t_pos player, t_pos enemy);
+
 #endif
