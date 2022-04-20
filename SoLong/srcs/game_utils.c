@@ -1,9 +1,12 @@
 #include "so_long.h"
 
-void get_map_pos(t_pos pos, int *i, int *j)
+t_map_pos get_map_pos(t_pos pos)
 {
-	*i = pos.y / IMG_SIZE;
-	*j = pos.x / IMG_SIZE;
+	t_map_pos m_pos;
+
+	m_pos.i = pos.y / IMG_SIZE;
+	m_pos.j = pos.x / IMG_SIZE;
+	return (m_pos);
 }
 
 t_pos *get_window_pos(int i, int j, t_pos *pos)
@@ -12,6 +15,15 @@ t_pos *get_window_pos(int i, int j, t_pos *pos)
 	pos->y = i * IMG_SIZE;
 	return (pos);
 }
+
+t_pos get_window_pos1(t_map_pos m_pos)
+{
+	t_pos pos;
+	pos.x = m_pos.j * IMG_SIZE;
+	pos.y = m_pos.i * IMG_SIZE;
+	return (pos);
+}
+
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {

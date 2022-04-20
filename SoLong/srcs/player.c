@@ -2,18 +2,17 @@
 
 void update_player_pos(t_data *data, t_pos pos)
 {
-	data->map.p.x = pos.x;
-	data->map.p.y = pos.y;
+	data->p_pos.x = pos.x;
+	data->p_pos.y = pos.y;
 }
-
 
 void move_player(t_data *data, t_pos p)
 {
 	void *p_img;
 
-	clean_player(*data);
+	clean_character(*data, data->p_pos);
 	update_player_pos(data, p);
-	print_img(*data, data->map.p, PLAYER);
+	print_img(*data, data->p_pos, PLAYER);
 }
 
 void get_sprites_player(enum Index_image *i_img, int dir)
@@ -46,26 +45,9 @@ void move_player1(t_data *data, t_pos p, int dir)
 	void *p_img;
 	enum Index_image i_img[2];
 
-	clean_player(*data);
+	clean_character(*data, data->p_pos);
 	update_player_pos(data, p);
 	get_sprites_player(i_img, dir);
 	print_img_by_index(*data, p, i_img[i % 2]);
 	i++;
-}
-
-void clean_player(t_data data)
-{
-	t_pos p[4];
-	int i;
-	int j;
-	int a;
-
-	get_player_corners(data.map.p, p);
-	a = 0;
-	while(a < 4)
-	{
-		get_map_pos(p[a], &i, &j);
-		print_img_from_map(data, i, j);
-		a++;
-	}
 }

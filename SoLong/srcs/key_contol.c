@@ -19,7 +19,7 @@ int key_up(int keycode, t_data *data)
 {
 	t_pos pos;
 
-	pos = data->map.p;
+	pos = data->p_pos;
 	if (keycode == KEY_UP)
 		print_img_by_index(*data, pos, P_UP_0);
 	else if (keycode == KEY_DOWN)

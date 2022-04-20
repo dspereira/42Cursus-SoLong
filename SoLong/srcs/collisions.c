@@ -5,11 +5,10 @@
 */
 int is_collision(t_pos pos, char **map, char c)
 {
-	int i;
-	int j;
+	t_map_pos m_pos;
 
-	get_map_pos(pos, &i, &j);
-	if (map[i][j] == c)
+	m_pos = get_map_pos(pos);
+	if (map[m_pos.i][m_pos.j] == c)
 		return (1);
 	return (0);
 }

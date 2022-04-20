@@ -1,29 +1,12 @@
 #include "so_long.h"
 
 
-void clean_enemy(t_data data)
-{
-	t_pos p[4];
-	int i;
-	int j;
-	int a;
-
-	get_player_corners(data.e_pos, p);
-	a = 0;
-	while(a < 4)
-	{
-		get_map_pos(p[a], &i, &j);
-		print_img_from_map(data, i, j);
-		a++;
-	}
-}
 
 void move_enemy(t_data *data, t_pos p)
 {
-	clean_enemy(*data);
+	clean_character(*data, data->e_pos);
 	data->e_pos = p;
 	print_img(*data, p, ENEMY);
-
 }
 
 int make_move_1(t_data *data, int x_offset, int y_offset)
@@ -68,20 +51,20 @@ int enemy_call(t_data *data)
 	r = 0;
 	m = 0;
 	i++;
-	if (i >= 20000)
+	if (i >= 10000)
 	{
 			srand(time(NULL) + i);
 			r = rand() % 4;
 			if (r == 0)
 			{
-				if (data->map.p.x < data->e_pos.x)
+				if (data->p_pos.x < data->e_pos.x)
 					x = -20;
 				else 
 					x = 20;
 			}
 			else if(r == 1)
 			{
-				if (data->map.p.y < data->e_pos.y)
+				if (data->p_pos.y < data->e_pos.y)
 					y = -20;
 				else 
 					y = 20;
@@ -100,12 +83,10 @@ int enemy_call(t_data *data)
 					y = 20;
 			}
 			m = make_move_1(data, x, y);
-			//printf("valor x: %i y: %i\n", x, y);
-			//printf("direction: %i\n", r);
 			if (m)
 				i = 0;
 	
-		if (enemy_collision(data->map.p, data->e_pos))
+		if (enemy_collision(data->p_pos, data->e_pos))
 		printf("INTERSETOU !\n");
 	}
 
@@ -114,7 +95,7 @@ int enemy_call(t_data *data)
 int main(int argc, char **argv)
 {
 	t_map 	map;
-	t_imgs	imgs;
+	t_img	imgs;
 	t_win	win;
 	t_data	data;
 

@@ -5,14 +5,16 @@ static int is_win(t_data data);
 void make_move(t_data *data, int x_offset, int y_offset, int dir)
 {
 	t_pos p;
-	t_map map;
+	char **map;
+	t_pos pos;
 
-	map = data->map;
-	p.x = map.p.x + x_offset;
-	p.y = map.p.y + y_offset;
-	if (is_valid_move(p, map.map))
+	map = data->map.map;
+	pos = data->p_pos;
+	p.x = pos.x + x_offset;
+	p.y = pos.y + y_offset;
+	if (is_valid_move(p, map))
 		move_player1(data, p, dir);
-	if (is_player_collision(map.p, map.map, COLLECTIBLE))
+	if (is_player_collision(pos, map, COLLECTIBLE))
 	{
 		catch_coin(data);
 		catch_coin(data);
@@ -47,8 +49,8 @@ static int is_win(t_data data)
 	t_pos p[4];
 	int i;
 
-	n_coins = data.map.n_collect;
-	get_player_corners(data.map.p, p);
+	n_coins = data.n_coins;
+	get_player_corners(data.p_pos, p);
 	i = 0;
 	while (i < 4)
 	{

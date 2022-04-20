@@ -18,48 +18,49 @@ static void map_init(t_data *data)
 {
 	t_pos pos;
 	t_map map;
-	int i;
-	int j;
+	t_map_pos m_pos;
 	int collect;
 	
 	map = data->map;
 	collect = 0;
-	i = 0;
-	while (i < map.height)
+	m_pos.i = 0;
+	while (m_pos.i < map.height)
 	{
-		j = 0;
-		while (j < map.length)
+		m_pos.j = 0;
+		while (m_pos.j < map.length)
 		{
-			print_img_from_map(*data, i, j);
-			if (map.map[i][j] == PLAYER)
+			print_img_from_map(*data, m_pos);
+			if (map.map[m_pos.i][m_pos.j] == PLAYER)
 			{
-				update_player_pos(data, *get_window_pos(i, j, &pos));
-				map.map[i][j] = GRASS;
+				update_player_pos(data, *get_window_pos(m_pos.i, m_pos.j, &pos));
+				map.map[m_pos.i][m_pos.j] = GRASS;
 			}
-			else if (map.map[i][j] == ENEMY)
+			else if (map.map[m_pos.i][m_pos.j] == ENEMY)
 			{
-				get_window_pos(i, j, &pos);
+				get_window_pos(m_pos.i, m_pos.j, &pos);
+
+				//Neste ponto o ponteiro de enimigos já deve estar criado
 				data->e_pos = pos;
-				map.map[i][j] = GRASS;
+				map.map[m_pos.i][m_pos.j] = GRASS;
 			}
-			else if (map.map[i][j] == COLLECTIBLE)
+			else if (map.map[m_pos.i][m_pos.j] == COLLECTIBLE)
 				collect++;
-			j++;
+			m_pos.j++;
 		}
-		i++;
+		m_pos.i++;
 	}
-	data->map.n_collect = collect;
+	data->n_coins = collect;
 }
 
 void add_img(t_data *data, int i, char *path)
 {
 	t_win win;
-	t_img_1 *img;
+	t_img *img;
 	int w;
 	int h;
 
 	win = data->win;
-	img = data->imgs_1;
+	img = data->imgs;
 	ft_strlcpy(img[i].path, path, ft_strlen(path) + 1);	
 	img[i].img = mlx_xpm_file_to_image(win.mlx, img[i].path, &w, &h);
 }
@@ -90,5 +91,5 @@ void imgs_init(t_data *data)
 
 void *get_img(t_data data, int index)
 {
-	return (data.imgs_1[index].img);
+	return (data.imgs[index].img);
 }

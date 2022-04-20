@@ -1,14 +1,17 @@
 #include <so_long.h>
 
-static void clean_coin(t_data *data, t_pos p)
-{
-	int i;
-	int j;
-	get_map_pos(p, &i, &j);
-	if (data->map.map[i][j] == COLLECTIBLE)
-		data->map.map[i][j] = GRASS;
-	print_img_from_map(*data, i, j);
-	print_img(*data, data->map.p, PLAYER);
+static void clean_coin(t_data *data, t_pos pos)
+{	
+	t_map_pos m_pos;
+	char **map;
+
+	map = data->map.map;
+
+	m_pos = get_map_pos(pos);
+	if (map[m_pos.i][m_pos.j] == COLLECTIBLE)
+		map[m_pos.i][m_pos.j] = GRASS;
+	print_img_from_map(*data, m_pos);
+	print_img(*data, data->p_pos, PLAYER);
 }
 
 static int corner_intersection_num(int *corner)
@@ -48,7 +51,7 @@ void catch_coin(t_data *data)
 	int num;
 	int i;
 	
-	get_player_corners(data->map.p, pos);
+	get_player_corners(data->p_pos, pos);
 	i = 0;
 	while (i < 4)
 	{
@@ -63,6 +66,6 @@ void catch_coin(t_data *data)
 		if (num == 2 && ((corners[0] && corners[2]) || (corners[1] && corners[3])))
 			return ;
 		clean_coin(data, get_intersection_point(pos, corners));
-		data->map.n_collect--;
+		data->n_coins--;
 	}
 }

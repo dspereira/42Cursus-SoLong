@@ -25,14 +25,13 @@ static void *get_map_img(t_data data, char map_comp)
 }
 
 //criar função que recebe outra por parametro que retorna a imagem
-
+/*
 void print_img_from_map(t_data data, int i, int j)
 {
 	void *p_img;
 	void *grass_img;
 	t_pos pos;
 	t_win win;
-
 	get_window_pos(i, j, &pos);
 	win = data.win;
 	p_img = get_map_img(data, data.map.map[i][j]);
@@ -41,6 +40,27 @@ void print_img_from_map(t_data data, int i, int j)
 	{
 		mlx_put_image_to_window(win.mlx, win.mlx_win, grass_img, pos.x, pos.y);
 		mlx_put_image_to_window(win.mlx, win.mlx_win, p_img, pos.x, pos.y);
+	}
+}*/
+
+void print_img_from_map(t_data data, t_map_pos m_pos)
+{
+	t_win	win;
+	t_pos	pos;
+	char	**map;
+	void	*img;
+	void	*grass_img;
+
+	map = data.map.map;
+	win = data.win;
+	get_window_pos(m_pos.i, m_pos.j, &pos);
+	img = get_map_img(data, map[m_pos.i][m_pos.j]);
+	grass_img = get_map_img(data, GRASS);
+	if (img && grass_img)
+	{
+		if (img != grass_img)
+			mlx_put_image_to_window(win.mlx, win.mlx_win, grass_img, pos.x, pos.y);
+		mlx_put_image_to_window(win.mlx, win.mlx_win, img, pos.x, pos.y);
 	}
 }
 
@@ -66,31 +86,21 @@ void print_img_by_index(t_data data, t_pos pos, int img_index)
 		mlx_put_image_to_window(win.mlx, win.mlx_win, p_img, pos.x, pos.y);
 }
 
-
-
-
-
-
-// primeira imagem do player
-/*
-void *get_first_img_player(t_data data)
+void clean_character(t_data data, t_pos pos)
 {
-	void *img;
-	t_map map;
+	t_pos a_pos[4];
+	t_map_pos m_pos;
 	int i;
-	int j;
 
-	map = data.map;
-	get_map_pos(map.p, &i, &j);
-	if (map.map[i + 1][j] == TREE)
-		return (get_img(data, P_UP_0));
-	else if (map.map[i - 1][j] == TREE)
-		return (get_img(data, P_DOWN_0));
-	else if (map.map[i][j + 1] == TREE)
-		return (get_img(data, P_RIGTH_0));
-	else if (map.map[i][j - 1] == TREE)
-		return (get_img(data, P_LEFT_0));
-	else 
-		return (get_img(data, P_DOWN_0));
+	get_player_corners(pos, a_pos);
+	i = 0;
+	while(i < 4)
+	{
+		m_pos = get_map_pos(a_pos[i]);
+		//print_img_from_map(data, m_pos.i, m_pos.j);
+		print_img_from_map(data, m_pos);
+
+
+		i++;
+	}
 }
-*/
