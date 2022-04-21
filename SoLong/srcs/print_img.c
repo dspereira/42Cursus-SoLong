@@ -17,7 +17,7 @@ static void *get_map_img(t_data data, char map_comp)
 	else if (map_comp == EXIT)
 		img = get_img(data, EXIT_1);
 	else if (map_comp == ENEMY)
-		img = get_img(data, ENEMY_0);
+		img = get_img(data, E_DOWN_0);
 	else
 		img = 0;
 
@@ -97,10 +97,7 @@ void clean_character(t_data data, t_pos pos)
 	while(i < 4)
 	{
 		m_pos = get_map_pos(a_pos[i]);
-		//print_img_from_map(data, m_pos.i, m_pos.j);
 		print_img_from_map(data, m_pos);
-
-
 		i++;
 	}
 }

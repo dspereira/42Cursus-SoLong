@@ -1,7 +1,5 @@
 #include "so_long.h"
 
-
-
 void move_enemy(t_data *data, t_pos p)
 {
 	clean_character(*data, data->e_pos);
@@ -9,7 +7,7 @@ void move_enemy(t_data *data, t_pos p)
 	print_img(*data, p, ENEMY);
 }
 
-int make_move_1(t_data *data, int x_offset, int y_offset)
+int make_move_1(t_data *data, int x_offset, int y_offset, int dir)
 {
 	t_pos p;
 
@@ -17,7 +15,8 @@ int make_move_1(t_data *data, int x_offset, int y_offset)
 	p.y = data->e_pos.y + y_offset;
 	if (is_valid_move(p, data->map.map))
 	{
-		move_enemy(data, p);
+		//move_enemy(data, p);
+		move_character(data, p, ENEMY, dir);
 		return (1);
 	}
 	return (0);
@@ -45,6 +44,7 @@ int enemy_call(t_data *data)
 	int y;
 	int m;
 	static int i = 0;
+	int dir;
 
 	x = 0;
 	y = 0;
@@ -54,35 +54,59 @@ int enemy_call(t_data *data)
 	if (i >= 10000)
 	{
 			srand(time(NULL) + i);
-			r = rand() % 4;
+			r = rand() % 5;
 			if (r == 0)
 			{
 				if (data->p_pos.x < data->e_pos.x)
+				{
 					x = -20;
-				else 
+					dir = KEY_LEFT;
+				}
+				else
+				{
 					x = 20;
+					dir = KEY_RIGHT;
+				} 
 			}
 			else if(r == 1)
 			{
 				if (data->p_pos.y < data->e_pos.y)
+				{
 					y = -20;
-				else 
+					dir = KEY_UP;
+				}
+				else
+				{
 					y = 20;
+					dir = KEY_DOWN;
+				}
 			}
 			else if (r >= 2)
 			{
 				srand(time(NULL)+ i);
 				r = rand() % 4;
 				if (r == 0)
+				{
 					x = -20;
+					dir = KEY_LEFT;
+				}
 				else if (r == 1)
+				{
 					x = 20;
+					dir = KEY_RIGHT;
+				}
 				else if (r == 2)
+				{
 					y = -20;
+					dir = KEY_UP;
+				}
 				else if (r == 3)
+				{
 					y = 20;
+					dir = KEY_DOWN;
+				}
 			}
-			m = make_move_1(data, x, y);
+			m = make_move_1(data, x, y, dir);
 			if (m)
 				i = 0;
 	

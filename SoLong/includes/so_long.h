@@ -78,7 +78,18 @@ enum Index_image
 	P_RIGHT_0,
 	P_RIGHT_1,
 	P_RIGHT_2,
-	ENEMY_0
+	E_UP_0,
+	E_UP_1,
+	E_UP_2,
+	E_DOWN_0,
+	E_DOWN_1,
+	E_DOWN_2,
+	E_LEFT_0,
+	E_LEFT_1,
+	E_LEFT_2,
+	E_RIGHT_0,
+	E_RIGHT_1,
+	E_RIGHT_2
 };
 
 typedef struct s_img
@@ -186,4 +197,7 @@ int enemy_collision(t_pos player, t_pos enemy);
 
 void clean_character(t_data data, t_pos pos);
 
+
+void update_character_pos(t_pos *dst_pos, t_pos src_pos);
+void move_character(t_data *data, t_pos new_pos, int c, int dir);
 #endif

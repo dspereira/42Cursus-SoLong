@@ -13,7 +13,8 @@ void make_move(t_data *data, int x_offset, int y_offset, int dir)
 	p.x = pos.x + x_offset;
 	p.y = pos.y + y_offset;
 	if (is_valid_move(p, map))
-		move_player1(data, p, dir);
+		move_character(data, p, PLAYER, dir);
+		//move_player1(data, p, dir);
 	if (is_player_collision(pos, map, COLLECTIBLE))
 	{
 		catch_coin(data);

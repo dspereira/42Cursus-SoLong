@@ -86,7 +86,21 @@ void imgs_init(t_data *data)
 	add_img(data, i++, "./assets/player/p_right_0.xpm");
 	add_img(data, i++, "./assets/player/p_right_1.xpm");
 	add_img(data, i++, "./assets/player/p_right_2.xpm");
-	add_img(data, i++, "./assets/enemy.xpm");
+	add_img(data, i++, "./assets/enemy/e_up_0.xpm");
+	add_img(data, i++, "./assets/enemy/e_up_1.xpm");
+	add_img(data, i++, "./assets/enemy/e_up_2.xpm");
+	add_img(data, i++, "./assets/enemy/e_down_0.xpm");
+	add_img(data, i++, "./assets/enemy/e_down_1.xpm");
+	add_img(data, i++, "./assets/enemy/e_down_2.xpm");
+	add_img(data, i++, "./assets/enemy/e_left_0.xpm");
+	add_img(data, i++, "./assets/enemy/e_left_1.xpm");
+	add_img(data, i++, "./assets/enemy/e_left_2.xpm");
+	add_img(data, i++, "./assets/enemy/e_right_0.xpm");
+	add_img(data, i++, "./assets/enemy/e_right_1.xpm");
+	add_img(data, i++, "./assets/enemy/e_right_2.xpm");
+
+
+	//add_img(data, i++, "./assets/enemy.xpm");
 }
 
 void *get_img(t_data data, int index)
