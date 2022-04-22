@@ -21,11 +21,11 @@ int key_up(int keycode, t_data *data)
 
 	pos = data->p_pos;
 	if (keycode == KEY_UP)
-		print_img_by_index(*data, pos, P_UP_0);
+		print_player(*data, UP_0);
 	else if (keycode == KEY_DOWN)
-		print_img_by_index(*data, pos, P_DOWN_0);
+		print_player(*data, DOWN_0);
 	else if (keycode == KEY_LEFT)
-		print_img_by_index(*data, pos, P_LEFT_0);
+		print_player(*data, LEFT_0);
 	else if (keycode == KEY_RIGHT)
-		print_img_by_index(*data, pos, P_RIGHT_0);
+		print_player(*data, RIGHT_0);
 }

@@ -15,8 +15,9 @@ int make_move_1(t_data *data, int x_offset, int y_offset, int dir)
 	p.y = data->e_pos.y + y_offset;
 	if (is_valid_move(p, data->map.map))
 	{
+		move_character_novo(data, data->enemy, &(data->e_pos), dir);
 		//move_enemy(data, p);
-		move_character(data, p, ENEMY, dir);
+		//move_character(data, p, ENEMY, dir);
 		return (1);
 	}
 	return (0);

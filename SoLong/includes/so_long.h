@@ -92,6 +92,23 @@ enum Index_image
 	E_RIGHT_2
 };
 
+enum sprite_dir
+{
+	UP_0,
+	UP_1,
+	UP_2,
+	DOWN_0,
+	DOWN_1,
+	DOWN_2,
+	LEFT_0,
+	LEFT_1,
+	LEFT_2,
+	RIGHT_0,
+	RIGHT_1,
+	RIGHT_2,
+};
+
+
 typedef struct s_img
 {
 	char path[50];
@@ -128,6 +145,9 @@ typedef struct s_data
 	t_map	map;
 	t_win	win;
 	t_img 	imgs[50];
+	t_img 	textures[6];
+	t_img	player[12];
+	t_img	enemy[12];
 	t_pos 	e_pos;
 	t_pos	p_pos;
 	int 	n_coins;
@@ -200,4 +220,17 @@ void clean_character(t_data data, t_pos pos);
 
 void update_character_pos(t_pos *dst_pos, t_pos src_pos);
 void move_character(t_data *data, t_pos new_pos, int c, int dir);
+
+void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir);
+
+void print_img1(t_win win, t_pos pos, void *img);
+
+void print_player(t_data data, int sprite);
+void print_enemy(t_data data, int sprite);
+
+t_pos get_window_pos2(int i, int j);
+
+void print_img_from_map1(t_data data, int i, int j);
+
+
 #endif
