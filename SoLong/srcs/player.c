@@ -24,7 +24,7 @@ void get_sprites(enum sprite_dir *i_img, int dir)
 	}
 }
 
-void update_position(t_pos *pos, int dir)
+void update_position1(t_pos *pos, int dir)
 {
 	if (dir == KEY_UP)
 		pos->y -= MOVE_RANGE;
@@ -43,7 +43,7 @@ void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir)
 
 	get_sprites(img_sprites, dir);
 	clean_character(*data, *pos);
-	update_position(pos, dir);
+	*pos = get_new_pos(*pos, dir);
 	print_img(data->win, *pos, imgs[img_sprites[i % 2]].img);
 	i++;
 }

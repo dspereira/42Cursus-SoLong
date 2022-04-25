@@ -190,7 +190,7 @@ void move_player(t_data *data, t_pos p);
 
 
 /* game_rules.c */
-void make_move(t_data *data, int x_offset, int y_offset, int dir);
+void make_move(t_data *data, int dir);
 void finish_game(t_data data);
 
 /* error_handling.c */
@@ -227,13 +227,13 @@ t_pos get_window_pos(int i, int j);
 
 void print_img_from_map(t_data data, int i, int j);
 
-void update_position(t_pos *pos, int dir);
-
 int enemy_call1(t_data *data);
 
 t_map_pos get_map_pos(t_pos pos);
 
 void imgs_init(t_data *data);
+
+t_pos get_new_pos(t_pos pos, int dir);
 
 
 #endif

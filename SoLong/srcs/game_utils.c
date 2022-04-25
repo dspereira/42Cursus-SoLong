@@ -17,6 +17,19 @@ t_pos get_window_pos(int i, int j)
 	return (pos);
 }
 
+t_pos get_new_pos(t_pos pos, int dir)
+{
+	if (dir == KEY_UP)
+		pos.y -= MOVE_RANGE;
+	else if (dir == KEY_DOWN)
+		pos.y += MOVE_RANGE;
+	else if (dir == KEY_RIGHT)
+		pos.x += MOVE_RANGE;
+	else if (dir == KEY_LEFT) 
+		pos.x -= MOVE_RANGE;
+	return (pos);
+}
+
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {
 	corners[0].x = start_pos.x;

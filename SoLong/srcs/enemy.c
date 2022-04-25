@@ -9,19 +9,6 @@ int get_random_num(int max_value)
     return (r);
 }
 
-t_pos get_new_pos(t_pos pos, int dir)
-{
-	if (dir == KEY_UP)
-		pos.y -= MOVE_RANGE;
-	else if (dir == KEY_DOWN)
-		pos.y += MOVE_RANGE;
-	else if (dir == KEY_RIGHT)
-		pos.x += MOVE_RANGE;
-	else if (dir == KEY_LEFT) 
-		pos.x -= MOVE_RANGE;
-    return (pos);
-}
-
 int get_random_direction(t_pos e_pos, t_pos p_pos)
 {
     int r;
