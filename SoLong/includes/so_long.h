@@ -177,13 +177,10 @@ int is_collision(t_pos p, char **map, char c);
 int is_player_collision(t_pos start_p, char **map, char c);
 
 /* print_img.c */
-//void print_img_from_map(t_data data, int i, int j);
-void print_img_from_map(t_data data, t_map_pos m_pos);
-void print_img(t_data data, t_pos pos, char c_img);
+void print_img(t_win win, t_pos pos, void *img);
 void clean_player(t_data data);
 
 /* game_utils.c */
-t_pos *get_window_pos(int i, int j, t_pos *pos);
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners);
 t_map_pos get_map_pos(t_pos pos);
 
@@ -206,8 +203,6 @@ void *get_img(t_data data, int index);
 
 void move_player1(t_data *data, t_pos p, int dir);
 
-void print_img_by_index(t_data data, t_pos pos, int img_index);
-
 int key_up(int keycode, t_data *data);
 
 int is_valid_move(t_pos pos, char **map);
@@ -223,14 +218,22 @@ void move_character(t_data *data, t_pos new_pos, int c, int dir);
 
 void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir);
 
-void print_img1(t_win win, t_pos pos, void *img);
+//void print_img1(t_win win, t_pos pos, void *img);
 
 void print_player(t_data data, int sprite);
 void print_enemy(t_data data, int sprite);
 
-t_pos get_window_pos2(int i, int j);
+t_pos get_window_pos(int i, int j);
 
-void print_img_from_map1(t_data data, int i, int j);
+void print_img_from_map(t_data data, int i, int j);
+
+void update_position(t_pos *pos, int dir);
+
+int enemy_call1(t_data *data);
+
+t_map_pos get_map_pos(t_pos pos);
+
+void imgs_init(t_data *data);
 
 
 #endif

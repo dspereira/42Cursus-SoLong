@@ -9,22 +9,7 @@ t_map_pos get_map_pos(t_pos pos)
 	return (m_pos);
 }
 
-t_pos *get_window_pos(int i, int j, t_pos *pos)
-{
-	pos->x = j * IMG_SIZE;
-	pos->y = i * IMG_SIZE;
-	return (pos);
-}
-
-t_pos get_window_pos1(t_map_pos m_pos)
-{
-	t_pos pos;
-	pos.x = m_pos.j * IMG_SIZE;
-	pos.y = m_pos.i * IMG_SIZE;
-	return (pos);
-}
-
-t_pos get_window_pos2(int i, int j)
+t_pos get_window_pos(int i, int j)
 {
 	t_pos pos;
 	pos.x = j * IMG_SIZE;
@@ -44,4 +29,3 @@ t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 	corners[3].y = start_pos.y + PLAYER_H;
 	return (corners);
 }
-

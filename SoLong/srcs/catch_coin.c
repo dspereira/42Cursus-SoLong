@@ -10,8 +10,7 @@ static void clean_coin(t_data *data, t_pos pos)
 	m_pos = get_map_pos(pos);
 	if (map[m_pos.i][m_pos.j] == COLLECTIBLE)
 		map[m_pos.i][m_pos.j] = GRASS;
-	print_img_from_map(*data, m_pos);
-	print_img(*data, data->p_pos, PLAYER);
+	print_img_from_map(*data, m_pos.i, m_pos.j);
 }
 
 static int corner_intersection_num(int *corner)

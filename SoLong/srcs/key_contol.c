@@ -17,15 +17,18 @@ int	key_control(int keycode, t_data *data)
 
 int key_up(int keycode, t_data *data)
 {
-	t_pos pos;
+	void *img;
 
-	pos = data->p_pos;
+	img = 0;
 	if (keycode == KEY_UP)
-		print_player(*data, UP_0);
+		img = data->player[UP_0].img;
 	else if (keycode == KEY_DOWN)
-		print_player(*data, DOWN_0);
+		img = data->player[DOWN_0].img;
 	else if (keycode == KEY_LEFT)
-		print_player(*data, LEFT_0);
+		img = data->player[LEFT_0].img;
 	else if (keycode == KEY_RIGHT)
-		print_player(*data, RIGHT_0);
+		img = data->player[RIGHT_0].img;
+	if (img)
+		print_img(data->win, data->p_pos, img);
+	
 }

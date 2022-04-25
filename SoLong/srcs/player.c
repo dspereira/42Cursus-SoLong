@@ -44,6 +44,6 @@ void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir)
 	get_sprites(img_sprites, dir);
 	clean_character(*data, *pos);
 	update_position(pos, dir);
-	print_img1(data->win, *pos, imgs[img_sprites[i % 2]].img);
+	print_img(data->win, *pos, imgs[img_sprites[i % 2]].img);
 	i++;
 }
