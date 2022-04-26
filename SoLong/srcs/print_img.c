@@ -55,3 +55,20 @@ void print_img(t_win win, t_pos pos, void *img)
 {
 	mlx_put_image_to_window(win.mlx, win.mlx_win, img, pos.x, pos.y);
 }
+
+void print_player_moves(t_data data)
+{
+	t_win	win;
+	int		color;
+	int		n;
+	int		i;
+
+	win = data.win;
+	n = data.n_moves;
+	color = 0x00FFFFFF;
+	i = 0;
+	while (i < 3)
+		print_img_from_map(data, 0, i++);
+	mlx_string_put(win.mlx, win.mlx_win, 30, 30, color, "MOVEMENTS:");
+	mlx_string_put(win.mlx, win.mlx_win, 100, 30, color, ft_itoa(n));
+}

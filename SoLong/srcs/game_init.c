@@ -24,8 +24,8 @@ static void map_init(t_data *data)
 	map = data->map;
 	collect = 0;
 	m_pos.i = 0;
+	data->n_moves = 0;
 	data->n_enemys = get_number_enemys(map);
-	printf("Numero de enimigos: %i\n", data->n_enemys);
 	if (data->n_enemys)
 		data->e_pos = malloc(data->n_enemys * sizeof(t_pos));
 	while (m_pos.i < map.height)
@@ -53,5 +53,6 @@ static void map_init(t_data *data)
 		}
 		m_pos.i++;
 	}
+	print_player_moves(*data);
 	data->n_coins = collect;
 }

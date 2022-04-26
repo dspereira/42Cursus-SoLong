@@ -237,7 +237,10 @@ t_pos get_new_pos(t_pos pos, int dir);
 
 int get_number_enemys(t_map map);
 
-int is_charater_collision(t_pos pos1, t_pos pos2);
+
+void print_player_moves(t_data data);
+
+char	*ft_itoa(int n);
 
 
 #endif
