@@ -19,10 +19,15 @@ static void map_init(t_data *data)
 	t_map map;
 	t_map_pos m_pos;
 	int collect;
+	int n = 0;
 	
 	map = data->map;
 	collect = 0;
 	m_pos.i = 0;
+	data->n_enemys = get_number_enemys(map);
+	printf("Numero de enimigos: %i\n", data->n_enemys);
+	if (data->n_enemys)
+		data->e_pos = malloc(data->n_enemys * sizeof(t_pos));
 	while (m_pos.i < map.height)
 	{
 		m_pos.j = 0;
@@ -39,7 +44,7 @@ static void map_init(t_data *data)
 				pos = get_window_pos(m_pos.i, m_pos.j);
 
 				//Neste ponto o ponteiro de enimigos já deve estar criado
-				data->e_pos = pos;
+				data->e_pos[n++] = pos;
 				map.map[m_pos.i][m_pos.j] = GRASS;
 			}
 			else if (map.map[m_pos.i][m_pos.j] == COLLECTIBLE)
@@ -50,5 +55,3 @@ static void map_init(t_data *data)
 	}
 	data->n_coins = collect;
 }
-
-

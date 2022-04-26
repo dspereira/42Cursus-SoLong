@@ -148,7 +148,7 @@ typedef struct s_data
 	t_img 	textures[6];
 	t_img	player[12];
 	t_img	enemy[12];
-	t_pos 	e_pos;
+	t_pos 	*e_pos;
 	t_pos	p_pos;
 	int 	n_coins;
 	int 	n_moves;
@@ -234,6 +234,10 @@ t_map_pos get_map_pos(t_pos pos);
 void imgs_init(t_data *data);
 
 t_pos get_new_pos(t_pos pos, int dir);
+
+int get_number_enemys(t_map map);
+
+int is_charater_collision(t_pos pos1, t_pos pos2);
 
 
 #endif

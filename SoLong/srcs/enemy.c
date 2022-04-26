@@ -2,9 +2,11 @@
 
 int get_random_num(int max_value)
 {
+    static int i = 0;
     int r;
 
-    srand(time(NULL));
+    i++;
+    srand(time(NULL) + i);
 	r = rand() % (max_value + 1);
     return (r);
 }
@@ -44,14 +46,14 @@ int get_random_direction(t_pos e_pos, t_pos p_pos)
     return (dir);
 }
 
-int make_move_2(t_data *data, int dir)
+int make_move_2(t_data *data, t_pos *e_pos, int dir)
 {
 	t_pos new_pos;
 
-    new_pos = get_new_pos(data->e_pos, dir);
+    new_pos = get_new_pos(*e_pos, dir);
 	if (is_valid_move(new_pos, data->map.map))
 	{
-		move_character_novo(data, data->enemy, &(data->e_pos), dir);
+		move_character_novo(data, data->enemy, e_pos, dir);
 		return (1);
 	}
 	return (0);
@@ -62,13 +64,43 @@ int enemy_call1(t_data *data)
 	static int i = 0;
     int dir;
     t_pos new_pos;
+    int n_enemys;
 
+    n_enemys = data->n_enemys - 1;
 	i++;
 	if (i >= 10000)
 	{
-        dir = get_random_direction(data->e_pos, data->p_pos);
-        if (make_move_2(data, dir));
-            i = 0;
+        while (n_enemys >= 0)
+        {
+            dir = get_random_direction(data->e_pos[n_enemys], data->p_pos);
+            make_move_2(data, &(data->e_pos[n_enemys]), dir);
+            n_enemys--;
+        }
+
+
+        i = 0;
     }
     return (0);
+}
+
+int get_number_enemys(t_map map)
+{
+    int i;
+    int j;
+    int n;
+
+    n = 0;
+    i = 0;
+    while (i < map.height)
+    {
+        j = 0;
+        while(j < map.length)
+        {
+            if (map.map[i][j] == ENEMY)
+                n++;
+            j++;
+        }
+        i++;
+    }
+    return (n);
 }
