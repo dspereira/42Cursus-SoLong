@@ -65,7 +65,7 @@ void print_player_moves(t_data data)
 
 	win = data.win;
 	n = data.n_moves;
-	color = 0x00FFFFFF;
+	color = 0xFFFFFF;
 	i = 0;
 	while (i < 3)
 		print_img_from_map(data, 0, i++);

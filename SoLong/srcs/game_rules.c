@@ -1,7 +1,7 @@
 #include "so_long.h"
 
-static int is_win(t_data data);
 
+/*
 void make_move(t_data *data, int dir)
 {
 	t_pos new_pos;
@@ -25,6 +25,7 @@ void make_move(t_data *data, int dir)
 	if(is_win(*data))
 		finish_game(*data);
 }
+*/
 
 void finish_game(t_data data)
 {
@@ -46,7 +47,7 @@ int is_valid_move(t_pos pos, char **map)
 	return (1);
 }
 
-static int is_win(t_data data)
+int is_win(t_data data)
 {
 	int n_coins;
 	t_pos p[4];

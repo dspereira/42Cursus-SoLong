@@ -243,4 +243,15 @@ void print_player_moves(t_data data);
 char	*ft_itoa(int n);
 
 
+int enemy_call(t_data *data);
+
+int get_random_direction(t_pos e_pos, t_pos p_pos);
+int make_move_2(t_data *data, t_pos *e_pos, int dir);
+
+int	key_down(int keycode, t_data *data);
+
+
+void player_move(t_data *data, int dir);
+
+int is_win(t_data data);
 #endif

@@ -59,30 +59,6 @@ int make_move_2(t_data *data, t_pos *e_pos, int dir)
 	return (0);
 }
 
-int enemy_call1(t_data *data)
-{
-	static int i = 0;
-    int dir;
-    t_pos new_pos;
-    int n_enemys;
-
-    n_enemys = data->n_enemys - 1;
-	i++;
-	if (i >= 10000)
-	{
-        while (n_enemys >= 0)
-        {
-            dir = get_random_direction(data->e_pos[n_enemys], data->p_pos);
-            make_move_2(data, &(data->e_pos[n_enemys]), dir);
-            n_enemys--;
-        }
-
-
-        i = 0;
-    }
-    return (0);
-}
-
 int get_number_enemys(t_map map)
 {
     int i;

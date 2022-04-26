@@ -1,10 +1,10 @@
 #include "so_long.h"
 
-int	key_control(int keycode, t_data *data)
+int	key_down(int keycode, t_data *data)
 {
 	if (keycode == KEY_DOWN || keycode == KEY_UP
 		|| keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		make_move(data, keycode);
+		player_move(data, keycode);
 	return (0);
 }
 
@@ -24,4 +24,26 @@ int key_up(int keycode, t_data *data)
 	if (img)
 		print_img(data->win, data->p_pos, img);
 	return (0);
+}
+
+int enemy_call(t_data *data)
+{
+	static int i = 0;
+    int dir;
+    t_pos new_pos;
+    int n_enemys;
+
+    n_enemys = data->n_enemys - 1;
+	i++;
+	if (i >= 10000)
+	{
+        while (n_enemys >= 0)
+        {
+            dir = get_random_direction(data->e_pos[n_enemys], data->p_pos);
+            make_move_2(data, &(data->e_pos[n_enemys]), dir);
+            n_enemys--;
+        }
+        i = 0;
+    }
+    return (0);
 }
