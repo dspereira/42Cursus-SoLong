@@ -16,20 +16,21 @@
 # define ENEMY			'O'
 
 // KEYS for ubuntu linux 
+/*
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
+*/
+// KEYS for MAC
 
-// KEYS for ubuntu linux 
-/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-*/
+
 /*
 # define UP				0
 # define DOWN			1
@@ -254,4 +255,7 @@ int	key_down(int keycode, t_data *data);
 void player_move(t_data *data, int dir);
 
 int is_win(t_data data);
+
+void *get_map_img(t_data data, char c);
+
 #endif

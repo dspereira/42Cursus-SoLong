@@ -5,6 +5,8 @@ int	key_down(int keycode, t_data *data)
 	if (keycode == KEY_DOWN || keycode == KEY_UP
 		|| keycode == KEY_LEFT || keycode == KEY_RIGHT)
 		player_move(data, keycode);
+	else if (keycode == KEY_ESC)
+		finish_game(*data);
 	return (0);
 }
 
@@ -35,7 +37,7 @@ int enemy_call(t_data *data)
 
     n_enemys = data->n_enemys - 1;
 	i++;
-	if (i >= 10000)
+	if (i >= 8000)
 	{
         while (n_enemys >= 0)
         {

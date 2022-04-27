@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void *get_map_img(t_data data, char c)
+void *get_map_img(t_data data, char c)
 {
 	void *img;
 
@@ -30,7 +30,7 @@ void print_img_from_map(t_data data, int i, int j)
 	c = data.map.map[i][j];
 	win = data.win;
 	pos = get_window_pos(i, j);
-	if (c != TREE && c != GRASS);
+	if (c != TREE && c != GRASS)
 		print_img(win, pos, get_map_img(data, GRASS));
 	print_img(win, pos, get_map_img(data, c));
 }
@@ -70,5 +70,5 @@ void print_player_moves(t_data data)
 	while (i < 3)
 		print_img_from_map(data, 0, i++);
 	mlx_string_put(win.mlx, win.mlx_win, 30, 30, color, "MOVEMENTS:");
-	mlx_string_put(win.mlx, win.mlx_win, 100, 30, color, ft_itoa(n));
+	mlx_string_put(win.mlx, win.mlx_win, 130, 30, color, ft_itoa(n));
 }

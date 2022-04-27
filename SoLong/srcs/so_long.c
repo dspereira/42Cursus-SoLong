@@ -1,11 +1,12 @@
 #include "so_long.h"
 
-/*
-int teste(int keycode, t_data *data)
+int finish_game1(t_data *data)
 {
-	printf("teste de mouse: %i\n", keycode);
+	free_map(data->map);
+	//free(data.win.mlx);
+	exit(0);
+	return (0);	
 }
-*/
 
 int main(int argc, char **argv)
 {
@@ -30,8 +31,8 @@ int main(int argc, char **argv)
 	game_init(&data);
 	mlx_hook(data.win.mlx_win, ON_KEYDOWN, 1L<<0, key_down, &data);
 	mlx_hook(data.win.mlx_win, ON_KEYUP, 1L<<1, key_up, &data);
-	//mlx_mouse_hook(data.win.mlx_win, teste, &data);
 	mlx_loop_hook(data.win.mlx, enemy_call, &data);
+	mlx_hook(data.win.mlx_win, ON_DESTROY, 0, finish_game1, &data);
 	mlx_loop(data.win.mlx);
 	return (0);
 }
