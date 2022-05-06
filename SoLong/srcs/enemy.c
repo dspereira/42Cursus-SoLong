@@ -1,5 +1,29 @@
 #include "so_long.h"
 
+int move_enemy(t_data *data)
+{
+	static int  i = 0;
+    int         j;
+    int         dir;
+    t_pos       *e_pos;
+
+	i++;
+	if (i >= 10000)
+	{
+        j = 0;
+        while (j < data->n_enemys)
+        {
+            e_pos = &(data->e_pos[j]);
+            dir = get_random_direction(*e_pos, data->p_pos);
+            if (is_valid_move(get_new_pos(*e_pos, dir), data->map.map))
+		        move_character(data, data->enemy, e_pos, dir);
+            j++;
+        }
+        i = 0;
+    }
+    return (0);
+}
+
 int get_random_num(int max_value)
 {
     static int i = 0;
@@ -44,19 +68,6 @@ int get_random_direction(t_pos e_pos, t_pos p_pos)
             dir = KEY_DOWN;
     }
     return (dir);
-}
-
-int make_move_2(t_data *data, t_pos *e_pos, int dir)
-{
-	t_pos new_pos;
-
-    new_pos = get_new_pos(*e_pos, dir);
-	if (is_valid_move(new_pos, data->map.map))
-	{
-		move_character_novo(data, data->enemy, e_pos, dir);
-		return (1);
-	}
-	return (0);
 }
 
 int get_number_enemys(t_map map)

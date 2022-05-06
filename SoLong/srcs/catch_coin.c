@@ -1,5 +1,35 @@
 #include <so_long.h>
 
+static void clean_coin(t_data *data, t_pos pos);
+static int corner_intersection_num(int *corner);
+static t_pos get_intersection_point(t_pos *pos, int *conors);
+
+void catch_coin(t_data *data)
+{
+	t_pos pos[4];
+	int corners[4];
+	int num;
+	int i;
+	
+	get_player_corners(data->p_pos, pos);
+	i = 0;
+	while (i < 4)
+	{
+		corners[i] = 0;
+		if (is_collision(pos[i], data->map.map, COLLECTIBLE))
+			corners[i] = 1;
+		i++;
+	}
+	num = corner_intersection_num(corners);
+	if (num >= 2)
+	{	
+		if (num == 2 && ((corners[0] && corners[2]) || (corners[1] && corners[3])))
+			return ;
+		clean_coin(data, get_intersection_point(pos, corners));
+		data->n_coins--;
+	}
+}
+
 static void clean_coin(t_data *data, t_pos pos)
 {	
 	t_map_pos m_pos;
@@ -41,30 +71,4 @@ static t_pos get_intersection_point(t_pos *pos, int *conors)
 		i++;
 	}
 	return (pos[i]);
-}
-
-void catch_coin(t_data *data)
-{
-	t_pos pos[4];
-	int corners[4];
-	int num;
-	int i;
-	
-	get_player_corners(data->p_pos, pos);
-	i = 0;
-	while (i < 4)
-	{
-		corners[i] = 0;
-		if (is_collision(pos[i], data->map.map, COLLECTIBLE))
-			corners[i] = 1;
-		i++;
-	}
-	num = corner_intersection_num(corners);
-	if (num >= 2)
-	{	
-		if (num == 2 && ((corners[0] && corners[2]) || (corners[1] && corners[3])))
-			return ;
-		clean_coin(data, get_intersection_point(pos, corners));
-		data->n_coins--;
-	}
 }

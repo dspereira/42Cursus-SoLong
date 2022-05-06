@@ -13,7 +13,7 @@ void make_move(t_data *data, int dir)
 	new_pos = get_new_pos(pos, dir);
 	if (is_valid_move(new_pos, map))
 	{
-		move_character_novo(data, data->player, &(data->p_pos), dir);
+		move_character(data, data->player, &(data->p_pos), dir);
 		data->n_moves++;
 		print_player_moves(*data);
 	}

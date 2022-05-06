@@ -16,21 +16,21 @@
 # define ENEMY			'O'
 
 // KEYS for ubuntu linux 
-/*
+
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-*/
-// KEYS for MAC
 
+// KEYS for MAC
+/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-
+*/
 /*
 # define UP				0
 # define DOWN			1
@@ -202,6 +202,11 @@ void *get_img(t_data data, int index);
 
 
 
+
+/* move_character */
+void move_character(t_data *data, t_img *imgs, t_pos *pos, int dir);
+
+
 void move_player1(t_data *data, t_pos p, int dir);
 
 int key_up(int keycode, t_data *data);
@@ -211,13 +216,9 @@ int is_valid_move(t_pos pos, char **map);
 int enemy_collision(t_pos player, t_pos enemy);
 
 
-void clean_character(t_data data, t_pos pos);
-
-
 void update_character_pos(t_pos *dst_pos, t_pos src_pos);
-void move_character(t_data *data, t_pos new_pos, int c, int dir);
 
-void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir);
+
 
 //void print_img1(t_win win, t_pos pos, void *img);
 
@@ -258,4 +259,9 @@ int is_win(t_data data);
 
 void *get_map_img(t_data data, char c);
 
+int	player_start_move(int keycode, t_data *data);
+int player_stop_move(int keycode, t_data *data);
+
+
+int move_enemy(t_data *data);
 #endif

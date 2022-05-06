@@ -1,49 +1,53 @@
 #include "so_long.h"
 
-void get_sprites(enum sprite_dir *i_img, int dir)
+// criar função de update numero de jogadas
+
+int	player_start_move(int keycode, t_data *data)
 {
-	if (dir == KEY_UP)
-	{
-		i_img[0] = UP_1;
-		i_img[1] = UP_2;
-	}
-	if (dir == KEY_DOWN)
-	{
-		i_img[0] = DOWN_1;
-		i_img[1] = DOWN_2;
-	}
-	if (dir == KEY_LEFT)
-	{
-		i_img[0] = LEFT_1;
-		i_img[1] = LEFT_2;
-	}
-	if (dir == KEY_RIGHT)
-	{
-		i_img[0] = RIGHT_1;
-		i_img[1] = RIGHT_2;
-	}
+	if (keycode == KEY_DOWN || keycode == KEY_UP
+		|| keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		player_move(data, keycode);
+	return (0);
 }
 
-void update_position1(t_pos *pos, int dir)
+int player_stop_move(int keycode, t_data *data)
 {
-	if (dir == KEY_UP)
-		pos->y -= MOVE_RANGE;
-	else if (dir == KEY_DOWN)
-		pos->y += MOVE_RANGE;
-	else if (dir == KEY_RIGHT)
-		pos->x += MOVE_RANGE;
-	else if (dir == KEY_LEFT) 
-		pos->x -= MOVE_RANGE;
+	void *img;
+
+	img = 0;
+	if (keycode == KEY_UP)
+		img = data->player[UP_0].img;
+	else if (keycode == KEY_DOWN)
+		img = data->player[DOWN_0].img;
+	else if (keycode == KEY_LEFT)
+		img = data->player[LEFT_0].img;
+	else if (keycode == KEY_RIGHT)
+		img = data->player[RIGHT_0].img;
+	if (img)
+		print_img(data->win, data->p_pos, img);
+	return (0);
 }
 
-void move_character_novo(t_data *data, t_img *imgs, t_pos *pos, int dir)
+void player_move(t_data *data, int dir)
 {
-	static int i = 1;
-	enum sprite_dir img_sprites[2];
-
-	get_sprites(img_sprites, dir);
-	clean_character(*data, *pos);
-	*pos = get_new_pos(*pos, dir);
-	print_img(data->win, *pos, imgs[img_sprites[i % 2]].img);
-	i++;
+	t_pos new_pos;
+	t_pos pos;
+	char **map;
+	
+	map = data->map.map;
+	pos = data->p_pos;
+	new_pos = get_new_pos(pos, dir);
+	if (is_valid_move(new_pos, map))
+	{
+		move_character(data, data->player, &(data->p_pos), dir);
+		data->n_moves++;
+		print_player_moves(*data);
+	}
+	if (is_player_collision(pos, map, COLLECTIBLE))
+	{
+		catch_coin(data);
+		catch_coin(data);
+	}
+	if(is_win(*data))
+		finish_game(*data);
 }
