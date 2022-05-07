@@ -67,3 +67,17 @@ int is_win(t_data data)
 	}	
 	return (0);
 }
+
+int is_lose(t_data data)
+{
+	int i;
+
+	i = 0;
+	while (i < data.n_enemys)
+	{
+		if (enemy_collision(data.p_pos, data.e_pos[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}

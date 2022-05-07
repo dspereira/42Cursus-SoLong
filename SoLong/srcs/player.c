@@ -48,6 +48,6 @@ void player_move(t_data *data, int dir)
 		catch_coin(data);
 		catch_coin(data);
 	}
-	if(is_win(*data))
+	if(is_win(*data) || is_lose(*data))
 		finish_game(*data);
 }

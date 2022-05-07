@@ -7,6 +7,8 @@ int move_enemy(t_data *data)
     int         dir;
     t_pos       *e_pos;
 
+    if (!data->n_enemys)
+        return (0);
 	i++;
 	if (i >= 10000)
 	{
@@ -21,6 +23,8 @@ int move_enemy(t_data *data)
         }
         i = 0;
     }
+    if(is_win(*data) || is_lose(*data))
+		finish_game(*data);
     return (0);
 }
 

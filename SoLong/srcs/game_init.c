@@ -23,6 +23,7 @@ static void	map_init(t_data *data)
 	map = data->map;
 	i = 0;
 	data->n_moves = 0;
+	data->n_enemys = 0;
 	while (i < map.height)
 	{
 		j = 0;
@@ -67,8 +68,9 @@ static void	enemy_init(t_data *data, int i, int j)
 			data->e_pos = malloc(data->n_enemys * sizeof(t_pos));
 	}
 	print_img_from_map(*data, i, j);
-	data->e_pos[n++] = get_window_pos(i, j);
+	data->e_pos[n] = get_window_pos(i, j);
 	data->map.map[i][j] = GRASS;
+	n++;
 }
 
 static void	coins_init(t_data *data, int i, int j)
