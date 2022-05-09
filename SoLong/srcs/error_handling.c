@@ -1,20 +1,43 @@
 #include "so_long.h"
 
+void print_error(char *str)
+{
+	int size;
+
+	if (!str)
+		return ;
+	size = ft_strlen(str);
+	write(STDERR_FD, str, size);
+}
+
 void	*oom_guard(void *p)
 {
 	if (!p)
 	{
-		printf("%s: Out of memory!\n", "Solong");
+		print_error("Out of memory!\n");
 		exit(EXIT_FAILURE);
 	}
 	return (p);
 }
 
-void map_error(int err)
+void map_error(int err, char *msg)
 {
-	if (err == 0)
+	if (err == -1)
 	{
-		printf("Error\n");
-		exit(0);
+		print_error("Error\n");
+		print_error(msg);
+		exit(EXIT_FAILURE);
 	}	
+}
+
+int	sys_error(int err)
+{
+	if (err == -1)
+	{
+		print_error("Error\n");
+		print_error(strerror(errno));
+		print_error("\n");
+		exit(EXIT_FAILURE);
+	}
+	return (err);
 }

@@ -6,7 +6,13 @@
 # include <unistd.h>
 # include <mlx.h>
 #include <time.h>
+# include <errno.h>
+# include <string.h>
 #include "../get_next_line/get_next_line.h"
+
+# define STDERR_FD		2
+
+# define EXT			".ber"
 
 # define COLLECTIBLE	'C'
 # define EXIT			'E'
@@ -267,6 +273,9 @@ int move_enemy(t_data *data);
 
 int is_lose(t_data data);
 
-void map_error(int err);
+void map_error(int err, char *msg);
+int	sys_error(int err);
+
+static int is_file_type_ber(char *file);
 
 #endif

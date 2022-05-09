@@ -7,11 +7,11 @@ static t_map get_map_from_file(char *path);
 
 t_map get_map(char *map_path)
 {
-	t_map map;
+	t_map	map;
 
+	map_error(is_file_type_ber(map_path), "Map is not \".ber\" extension\n");
 	map = get_map_from_file(map_path);
-	map_error(map_validation(map));
-
+	map_error(map_validation(map), "Misconfiguration Map\n");
 	return (map);
 }
 
@@ -21,15 +21,15 @@ static int get_num_lines(char *path)
 	int		n_lines;
 	char	buff;
 
-	fd = open(path, O_RDONLY);
+	fd = sys_error(open(path, O_RDONLY));
 	n_lines = 0;
-	while (read(fd, &buff, 1))
+	while (sys_error(read(fd, &buff, 1)))
 	{
 		if (buff == '\n')
 			n_lines++;
 	}
 	n_lines++;
-	close(fd);
+	sys_error(close(fd));
 	return (n_lines);
 }
 
@@ -43,7 +43,7 @@ static t_map get_map_from_file(char *path)
 	map.height = get_num_lines(path);
 	if(map.height)
 		map.map = oom_guard(malloc((map.height) * sizeof(char *)));
-	fd = open(path, O_RDONLY);
+	fd = sys_error(open(path, O_RDONLY));
 	i = 0;
 	while (i < map.height)
 	{
@@ -57,9 +57,33 @@ static t_map get_map_from_file(char *path)
 		i++;
 	}
 	map.length = ft_strlen(map.map[0]);
-	close(fd);
+	sys_error(close(fd));
 	return (map);
 }
+
+static int is_file_type_ber(char *file)
+{
+	int size;
+	char *ext;
+	int ext_size;
+	int  i;
+
+	if (!file)
+		return (-1);
+	size = ft_strlen(file);
+	ext_size = ft_strlen(EXT);
+	if (size <= ext_size)
+		return (-1);
+	ext = file + (size - ext_size);
+	i = 0;
+	while (EXT[i] != '\0')
+	{
+		if (ext[i] != EXT[i])
+			return (-1);
+		i++;
+	}
+	return (1);
+} 
 
 void free_map(t_map map)
 {

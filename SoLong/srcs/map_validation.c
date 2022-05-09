@@ -10,7 +10,7 @@ int map_validation(t_map map)
     if (!map_is_rectangle(map) 
 		|| !map_have_walls(map) 
 		|| !map_have_all_elements(map))
-        return (0);
+        return (-1);
     return (1);
 }
 
@@ -56,7 +56,6 @@ static int map_have_walls(t_map map)
 	}	
 	return (1);
 }
-
 
 static int search_elemnts(t_map map, int *c, int *e, int *p)
 {
