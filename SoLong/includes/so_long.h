@@ -266,4 +266,7 @@ int player_stop_move(int keycode, t_data *data);
 int move_enemy(t_data *data);
 
 int is_lose(t_data data);
+
+void map_error(int err);
+
 #endif

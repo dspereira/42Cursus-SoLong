@@ -9,3 +9,12 @@ void	*oom_guard(void *p)
 	}
 	return (p);
 }
+
+void map_error(int err)
+{
+	if (err == 0)
+	{
+		printf("Error\n");
+		exit(0);
+	}	
+}

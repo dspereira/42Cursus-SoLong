@@ -10,10 +10,7 @@ t_map get_map(char *map_path)
 	t_map map;
 
 	map = get_map_from_file(map_path);
-	if(map_validation(map))
-		printf("MAPA CERTO\n");
-	else 
-		printf("MAPA ERADO\n");
+	map_error(map_validation(map));
 
 	return (map);
 }

@@ -2,12 +2,14 @@
 
 static int map_is_rectangle(t_map map);
 static int map_have_walls(t_map map);
-static void search_elemnts(t_map map, int *c, int *e, int *p);
+static int search_elemnts(t_map map, int *c, int *e, int *p);
 static int map_have_all_elements(t_map map);
 
 int map_validation(t_map map)
 {
-    if (!map_is_rectangle(map) || !map_have_walls(map) || !map_have_all_elements(map))
+    if (!map_is_rectangle(map) 
+		|| !map_have_walls(map) 
+		|| !map_have_all_elements(map))
         return (0);
     return (1);
 }
@@ -56,10 +58,11 @@ static int map_have_walls(t_map map)
 }
 
 
-static void search_elemnts(t_map map, int *c, int *e, int *p)
+static int search_elemnts(t_map map, int *c, int *e, int *p)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	elem;
 
 	i = 0;
 	while (i < map.height)
@@ -67,16 +70,20 @@ static void search_elemnts(t_map map, int *c, int *e, int *p)
 		j = 0;
 		while (j < map.length)
 		{
-			if (map.map[i][j] == COLLECTIBLE)
+			elem = map.map[i][j];
+			if (elem == COLLECTIBLE)
 				(*c)++;
-			else if (map.map[i][j] == EXIT)
+			else if (elem == EXIT)
 				(*e)++;
-			else if (map.map[i][j] == PLAYER)
+			else if (elem == PLAYER)
 				(*p)++;
+			else if (elem != GRASS && elem != TREE && elem != ENEMY)
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 static int map_have_all_elements(t_map map)
@@ -84,12 +91,13 @@ static int map_have_all_elements(t_map map)
 	int collect;
 	int exit;
 	int player;
+	int err;
 
 	collect = 0;
 	exit = 0;
 	player = 0;
-	search_elemnts(map, &collect, &exit, &player);
-	if(player > 0 && exit > 0 && collect > 0)
+	err = search_elemnts(map, &collect, &exit, &player);
+	if(err && player > 0 && exit > 0 && collect > 0)
 		return (1);
 	return (0);
 }
