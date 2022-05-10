@@ -61,7 +61,7 @@ static t_map get_map_from_file(char *path)
 	return (map);
 }
 
-static int is_file_type_ber(char *file)
+int is_file_type_ber(char *file)
 {
 	int size;
 	char *ext;

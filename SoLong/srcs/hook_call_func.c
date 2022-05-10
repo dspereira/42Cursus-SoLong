@@ -17,6 +17,6 @@ int key_up(int keycode, t_data *data)
 
 int enemy_call(t_data *data)
 {
-	move_enemy(data);
+	enemy_move(data);
     return (0);
 }

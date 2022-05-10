@@ -1,31 +1,51 @@
 #include "so_long.h"
 
-int move_enemy(t_data *data)
+static int is_enemy_collision(t_data data ,t_pos new, int enemy_index);
+
+void clean_all_enemys(t_data data);
+void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir);
+
+void move_enemy1(t_data *data);
+void move(t_data *data);
+
+
+int enemy_move(t_data *data)
 {
-	static int  i = 0;
-    int         j;
-    int         dir;
-    t_pos       *e_pos;
+	static int  i = 0;   
 
     if (!data->n_enemys)
         return (0);
 	i++;
-	if (i >= 10000)
+	if (i >= 30000)
 	{
-        j = 0;
-        while (j < data->n_enemys)
-        {
-            e_pos = &(data->e_pos[j]);
-            dir = get_random_direction(*e_pos, data->p_pos);
-            if (is_valid_move(get_new_pos(*e_pos, dir), data->map.map))
-		        move_character(data, data->enemy, e_pos, dir);
-            j++;
-        }
+        move(data);
         i = 0;
     }
     if(is_win(*data) || is_lose(*data))
 		finish_game(*data);
     return (0);
+}
+
+void move(t_data *data)
+{
+    int i;
+    int dir;
+    t_pos *e_pos;
+    t_pos new_pos;
+
+    i = 0;
+    clean_all_enemys(*data);
+    while (i < data->n_enemys)
+    {
+        e_pos = &(data->e_pos[i]);
+        dir = get_random_direction(*e_pos, data->p_pos);
+        new_pos = get_new_pos(*e_pos, dir);
+        if (is_valid_move(new_pos, data->map.map) && 
+            !is_enemy_collision(*data, new_pos, i))
+            *e_pos = new_pos;
+        print_enemy(data, data->enemy, *e_pos, dir);
+        i++;
+    }
 }
 
 int get_random_num(int max_value)
@@ -94,4 +114,46 @@ int get_number_enemys(t_map map)
         i++;
     }
     return (n);
+}
+
+static int is_enemy_collision(t_data data ,t_pos new, int enemy_index)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        if (i == enemy_index)
+            ;
+        else if (enemy_collision(new, data.e_pos[i]))
+        {
+            printf("Colidiu\n");
+            return (1);
+        }
+        i++;
+    }
+    printf("não Colidiu\n");
+    return (0);
+}
+
+void clean_all_enemys(t_data data)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        clean_character(data, data.e_pos[i]);
+        i++;
+    }
+}
+
+void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir)
+{
+	static int i = 1;
+	enum sprite_dir img_sprites[2];
+
+	get_sprites(img_sprites, dir);
+	print_img(data->win, pos, imgs[img_sprites[i % 2]].img);
+	i++;
 }

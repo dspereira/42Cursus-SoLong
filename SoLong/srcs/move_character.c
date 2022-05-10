@@ -1,8 +1,5 @@
 #include "so_long.h"
 
-static void clean_character(t_data data, t_pos pos);
-static void get_sprites(enum sprite_dir *i_img, int dir);
-
 void move_character(t_data *data, t_img *imgs, t_pos *pos, int dir)
 {
 	static int i = 1;
@@ -15,7 +12,7 @@ void move_character(t_data *data, t_img *imgs, t_pos *pos, int dir)
 	i++;
 }
 
-static void clean_character(t_data data, t_pos pos)
+void clean_character(t_data data, t_pos pos)
 {
 	t_pos a_pos[4];
 	t_map_pos m_pos;
@@ -31,7 +28,7 @@ static void clean_character(t_data data, t_pos pos)
 	}
 }
 
-static void get_sprites(enum sprite_dir *i_img, int dir)
+void get_sprites(enum sprite_dir *i_img, int dir)
 {
 	if (dir == KEY_UP)
 	{

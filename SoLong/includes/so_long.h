@@ -229,7 +229,7 @@ void update_character_pos(t_pos *dst_pos, t_pos src_pos);
 //void print_img1(t_win win, t_pos pos, void *img);
 
 void print_player(t_data data, int sprite);
-void print_enemy(t_data data, int sprite);
+//void print_enemy(t_data data, int sprite);
 
 t_pos get_window_pos(int i, int j);
 
@@ -276,6 +276,12 @@ int is_lose(t_data data);
 void map_error(int err, char *msg);
 int	sys_error(int err);
 
-static int is_file_type_ber(char *file);
+int is_file_type_ber(char *file);
+
+void clean_character(t_data data, t_pos pos);
+
+void get_sprites(enum sprite_dir *i_img, int dir);
+
+//void move_character2(t_data *data, t_img *imgs, t_pos *pos, int dir);
 
 #endif
