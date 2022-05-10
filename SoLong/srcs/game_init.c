@@ -52,6 +52,7 @@ static void	player_init(t_data *data, int i, int j)
 	if (!a)
 	{
 		data->p_pos = get_window_pos(i, j);
+		data->p_pos.sprite = DOWN_0;
 		print_img(data->win, data->p_pos, get_map_img(*data, PLAYER));
 	}
 	a++;
@@ -69,6 +70,7 @@ static void	enemy_init(t_data *data, int i, int j)
 	}
 	print_img_from_map(*data, i, j);
 	data->e_pos[n] = get_window_pos(i, j);
+	data->e_pos[n].sprite = DOWN_0;
 	data->map.map[i][j] = GRASS;
 	n++;
 }

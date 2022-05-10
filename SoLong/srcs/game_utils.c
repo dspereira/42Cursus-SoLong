@@ -17,6 +17,29 @@ t_pos get_window_pos(int i, int j)
 	return (pos);
 }
 
+int get_sprite(int sprite, int dir)
+{
+	int s;
+
+	if (dir == KEY_UP && sprite == UP_2)
+		s = UP_1;
+	else if(dir == KEY_UP)
+		s = UP_2;
+	else if (dir == KEY_DOWN && sprite == DOWN_2)
+		s = DOWN_1;
+	else if(dir == KEY_DOWN)
+		s = DOWN_2;
+	else if (dir == KEY_LEFT && sprite == LEFT_2)
+		s = LEFT_1;
+	else if(dir == KEY_LEFT)
+		s = LEFT_2;
+	else if (dir == KEY_RIGHT && sprite == RIGHT_2)
+		s = RIGHT_1;
+	else if(dir == KEY_RIGHT)
+		s = RIGHT_2;		
+	return (s);
+}
+
 t_pos get_new_pos(t_pos pos, int dir)
 {
 	if (dir == KEY_UP)
@@ -27,8 +50,31 @@ t_pos get_new_pos(t_pos pos, int dir)
 		pos.x += MOVE_RANGE;
 	else if (dir == KEY_LEFT) 
 		pos.x -= MOVE_RANGE;
+	pos.sprite = get_sprite(pos.sprite, dir);	
 	return (pos);
 }
+/*
+	if (dir == KEY_UP)
+	{
+		i_img[0] = UP_1;
+		i_img[1] = UP_2;
+	}
+	if (dir == KEY_DOWN)
+	{
+		i_img[0] = DOWN_1;
+		i_img[1] = DOWN_2;
+	}
+	if (dir == KEY_LEFT)
+	{
+		i_img[0] = LEFT_1;
+		i_img[1] = LEFT_2;
+	}
+	if (dir == KEY_RIGHT)
+	{
+		i_img[0] = RIGHT_1;
+		i_img[1] = RIGHT_2;
+	}
+*/
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {

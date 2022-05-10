@@ -11,6 +11,11 @@ int time_counter(int n_sec);
 
 int get_direction(t_pos e_pos, t_pos p_pos);
 
+
+
+
+
+
 int enemy_move(t_data *data)
 {
     if (!data->n_enemys)
@@ -36,7 +41,8 @@ int time_counter(int n_sec)
 	return (0);
 }
 
-void move(t_data *data)
+
+void move1(t_data *data)
 {
     int i;
     int dir;
@@ -56,6 +62,27 @@ void move(t_data *data)
         print_enemy(data, data->enemy, *e_pos, dir);
         i++;
     }
+}
+
+void move(t_data *data)
+{
+    int i;
+    int dir;
+    t_pos *e_pos;
+    t_pos new_pos;
+
+    i = 0;
+    clean_all_character(*data);
+    while (i < data->n_enemys)
+    {
+        e_pos = &(data->e_pos[i]);
+        dir = get_direction(*e_pos, data->p_pos);
+        new_pos = get_new_pos(*e_pos, dir);
+        if (is_valid_move(new_pos, data->map.map) && !is_enemy_collision(*data, new_pos, i))
+            *e_pos = new_pos;
+        i++;
+    }
+    print_all_character(*data);
 }
 
 int get_random_num(int max_value)
@@ -165,4 +192,33 @@ void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir)
 	get_sprites(img_sprites, dir);
 	print_img(data->win, pos, imgs[img_sprites[i % 2]].img);
 	i++;
+}
+
+
+
+// novas funcoes
+void clean_all_character(t_data data)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        clean_character(data, data.e_pos[i]);
+        i++;
+    }
+    clean_character(data, data.p_pos);    
+}
+
+void print_all_character(t_data data)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        print_img(data.win, data.e_pos[i], data.enemy[data.e_pos[i].sprite].img);
+        i++;
+    }
+    print_img(data.win, data.p_pos, data.player[data.p_pos.sprite].img);
 }

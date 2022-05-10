@@ -72,31 +72,7 @@ enum Index_image
 	GRASS_1,
 	TREE_1,
 	COIN_1,
-	EXIT_1,
-	P_UP_0,
-	P_UP_1,
-	P_UP_2,
-	P_DOWN_0,
-	P_DOWN_1,
-	P_DOWN_2,
-	P_LEFT_0,
-	P_LEFT_1,
-	P_LEFT_2,
-	P_RIGHT_0,
-	P_RIGHT_1,
-	P_RIGHT_2,
-	E_UP_0,
-	E_UP_1,
-	E_UP_2,
-	E_DOWN_0,
-	E_DOWN_1,
-	E_DOWN_2,
-	E_LEFT_0,
-	E_LEFT_1,
-	E_LEFT_2,
-	E_RIGHT_0,
-	E_RIGHT_1,
-	E_RIGHT_2
+	EXIT_1
 };
 
 enum sprite_dir
@@ -132,6 +108,7 @@ typedef struct s_pos
 {
 	int x;
 	int y;
+	int sprite;
 }	t_pos;
 
 typedef struct s_map
@@ -284,5 +261,8 @@ void get_sprites(enum sprite_dir *i_img, int dir);
 
 //void move_character2(t_data *data, t_img *imgs, t_pos *pos, int dir);
 int enemy_move(t_data *data);
+
+void clean_all_character(t_data data);
+void print_all_character(t_data data);
 
 #endif
