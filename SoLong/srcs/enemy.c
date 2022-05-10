@@ -7,23 +7,33 @@ void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir);
 
 void move_enemy1(t_data *data);
 void move(t_data *data);
+int time_counter(int n_sec);
 
+int get_direction(t_pos e_pos, t_pos p_pos);
 
 int enemy_move(t_data *data)
 {
-	static int  i = 0;   
-
     if (!data->n_enemys)
         return (0);
-	i++;
-	if (i >= 30000)
-	{
+    if(time_counter(1))
         move(data);
-        i = 0;
-    }
     if(is_win(*data) || is_lose(*data))
 		finish_game(*data);
     return (0);
+}
+
+int time_counter(int n_sec)
+{
+	static unsigned long time_actual = 0;
+	static unsigned long time_buff = 0;
+
+	time_actual = time(NULL);
+	if (time_actual - time_buff >= n_sec)
+	{
+		time_buff = time(NULL);
+		return (1);
+	}
+	return (0);
 }
 
 void move(t_data *data)
@@ -38,7 +48,7 @@ void move(t_data *data)
     while (i < data->n_enemys)
     {
         e_pos = &(data->e_pos[i]);
-        dir = get_random_direction(*e_pos, data->p_pos);
+        dir = get_direction(*e_pos, data->p_pos);
         new_pos = get_new_pos(*e_pos, dir);
         if (is_valid_move(new_pos, data->map.map) && 
             !is_enemy_collision(*data, new_pos, i))
@@ -59,12 +69,27 @@ int get_random_num(int max_value)
     return (r);
 }
 
-int get_random_direction(t_pos e_pos, t_pos p_pos)
+int get_rand_direction(void)
+{
+    int r;
+
+    r = get_random_num(3);
+    if (r == 0)
+        return (KEY_LEFT);
+    else if (r == 1)
+        return (KEY_RIGHT);
+    else if (r == 2)
+        return (KEY_UP);
+    else if (r == 3)
+        return (KEY_DOWN);  
+}
+
+int get_direction(t_pos e_pos, t_pos p_pos)
 {
     int r;
     int dir;
 
-    r = get_random_num(5);
+    r = get_random_num(2);
     if (r == 0)
     {
         if (p_pos.x < e_pos.x)
@@ -80,17 +105,7 @@ int get_random_direction(t_pos e_pos, t_pos p_pos)
             dir = KEY_DOWN;
     }
     else if (r >= 2)
-    {
-        r = get_random_num(3);
-        if (r == 0)
-            dir = KEY_LEFT;
-        else if (r == 1)
-            dir = KEY_RIGHT;
-        else if (r == 2)
-            dir = KEY_UP;
-        else if (r == 3)
-            dir = KEY_DOWN;
-    }
+        dir = get_rand_direction();
     return (dir);
 }
 
@@ -123,16 +138,10 @@ static int is_enemy_collision(t_data data ,t_pos new, int enemy_index)
     i = 0;
     while (i < data.n_enemys)
     {
-        if (i == enemy_index)
-            ;
-        else if (enemy_collision(new, data.e_pos[i]))
-        {
-            printf("Colidiu\n");
+        if (i != enemy_index && enemy_collision(new, data.e_pos[i]))
             return (1);
-        }
         i++;
     }
-    printf("não Colidiu\n");
     return (0);
 }
 

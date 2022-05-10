@@ -76,7 +76,10 @@ int is_lose(t_data data)
 	while (i < data.n_enemys)
 	{
 		if (enemy_collision(data.p_pos, data.e_pos[i]))
+		{
+			printf("you lose!\n");
 			return (1);
+		}
 		i++;
 	}
 	return (0);

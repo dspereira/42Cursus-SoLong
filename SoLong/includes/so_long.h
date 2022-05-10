@@ -283,5 +283,6 @@ void clean_character(t_data data, t_pos pos);
 void get_sprites(enum sprite_dir *i_img, int dir);
 
 //void move_character2(t_data *data, t_img *imgs, t_pos *pos, int dir);
+int enemy_move(t_data *data);
 
 #endif
