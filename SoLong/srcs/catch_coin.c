@@ -4,6 +4,7 @@ static void clean_coin(t_data *data, t_pos pos);
 static int corner_intersection_num(int *corner);
 static t_pos get_intersection_point(t_pos *pos, int *conors);
 
+
 void catch_coin(t_data *data)
 {
 	t_pos pos[4];
@@ -23,7 +24,8 @@ void catch_coin(t_data *data)
 	num = corner_intersection_num(corners);
 	if (num >= 2)
 	{	
-		if (num == 2 && ((corners[0] && corners[2]) || (corners[1] && corners[3])))
+		if (num == 2 && ((corners[0] && corners[2]) 
+			|| (corners[1] && corners[3])))
 			return ;
 		clean_coin(data, get_intersection_point(pos, corners));
 		data->n_coins--;

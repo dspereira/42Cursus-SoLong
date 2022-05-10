@@ -26,7 +26,10 @@ int is_player_collision(t_pos start_p, char **map, char c)
 	while (i < 4)
 	{
 		if (is_collision(pos[i], map, c))
+		{
+			printf("detetou colisão \n");
 			return (1);
+		}
 		i++;		
 	}
 	return (0);
@@ -41,13 +44,27 @@ int enemy_collision(t_pos player, t_pos enemy)
 	i = 0;
 	get_player_corners(player, p);
 	get_player_corners(enemy, e);
-	if ((e[0].x + 1 > p[0].x && e[0].x - 1 < p[1].x)
-		|| (e[1].x + 1 > p[0].x && e[1].x - 1 < p[1].x))
+	if ((e[0].x >= p[0].x && e[0].x <= p[1].x)
+		|| (e[1].x >= p[0].x && e[1].x <= p[1].x))
 		i++;
-	if ((e[1].y + 1 > p[1].y &&  e[1].y + 1 < p[2].y)
-		|| (e[2].y - 1 > p[1].y && e[2].y - 1 < p[2].y))
+	if ((e[1].y >= p[1].y &&  e[1].y <= p[2].y)
+		|| (e[2].y >= p[1].y && e[2].y <= p[2].y))
 		i++;
 	if (i > 1)
 		return (1);
 	return (0);
+}
+
+int is_enemy_collision(t_data data ,t_pos new, int enemy_index)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        if (i != enemy_index && enemy_collision(new, data.e_pos[i]))
+            return (1);
+        i++;
+    }
+    return (0);
 }

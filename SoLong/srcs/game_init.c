@@ -9,7 +9,7 @@ t_data	game_init(t_data *data)
 {
 	imgs_init(data);
 	map_init(data);
-	print_player_moves(*data);
+	print_number_of_moves(*data);
 	return (*data);
 }
 

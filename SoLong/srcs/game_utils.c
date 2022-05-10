@@ -53,28 +53,6 @@ t_pos get_new_pos(t_pos pos, int dir)
 	pos.sprite = get_sprite(pos.sprite, dir);	
 	return (pos);
 }
-/*
-	if (dir == KEY_UP)
-	{
-		i_img[0] = UP_1;
-		i_img[1] = UP_2;
-	}
-	if (dir == KEY_DOWN)
-	{
-		i_img[0] = DOWN_1;
-		i_img[1] = DOWN_2;
-	}
-	if (dir == KEY_LEFT)
-	{
-		i_img[0] = LEFT_1;
-		i_img[1] = LEFT_2;
-	}
-	if (dir == KEY_RIGHT)
-	{
-		i_img[0] = RIGHT_1;
-		i_img[1] = RIGHT_2;
-	}
-*/
 
 t_pos *get_player_corners(t_pos start_pos, t_pos *corners)
 {

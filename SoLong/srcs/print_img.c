@@ -40,8 +40,20 @@ void print_img(t_win win, t_pos pos, void *img)
 	mlx_put_image_to_window(win.mlx, win.mlx_win, img, pos.x, pos.y);
 }
 
-// print_number_moves
-void print_player_moves(t_data data)
+void print_all_character(t_data data)
+{
+    int i;
+
+    i = 0;
+    while (i < data.n_enemys)
+    {
+        print_img(data.win, data.e_pos[i], data.enemy[data.e_pos[i].sprite].img);
+        i++;
+    }
+    print_img(data.win, data.p_pos, data.player[data.p_pos.sprite].img);
+}
+
+void print_number_of_moves(t_data data)
 {
 	t_win	win;
 	int		color;

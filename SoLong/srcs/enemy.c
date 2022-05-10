@@ -1,6 +1,5 @@
 #include "so_long.h"
 
-static int is_enemy_collision(t_data data ,t_pos new, int enemy_index);
 
 void clean_all_enemys(t_data data);
 void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir);
@@ -39,29 +38,6 @@ int time_counter(int n_sec)
 		return (1);
 	}
 	return (0);
-}
-
-
-void move1(t_data *data)
-{
-    int i;
-    int dir;
-    t_pos *e_pos;
-    t_pos new_pos;
-
-    i = 0;
-    clean_all_enemys(*data);
-    while (i < data->n_enemys)
-    {
-        e_pos = &(data->e_pos[i]);
-        dir = get_direction(*e_pos, data->p_pos);
-        new_pos = get_new_pos(*e_pos, dir);
-        if (is_valid_move(new_pos, data->map.map) && 
-            !is_enemy_collision(*data, new_pos, i))
-            *e_pos = new_pos;
-        print_enemy(data, data->enemy, *e_pos, dir);
-        i++;
-    }
 }
 
 void move(t_data *data)
@@ -156,69 +132,4 @@ int get_number_enemys(t_map map)
         i++;
     }
     return (n);
-}
-
-static int is_enemy_collision(t_data data ,t_pos new, int enemy_index)
-{
-    int i;
-
-    i = 0;
-    while (i < data.n_enemys)
-    {
-        if (i != enemy_index && enemy_collision(new, data.e_pos[i]))
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-void clean_all_enemys(t_data data)
-{
-    int i;
-
-    i = 0;
-    while (i < data.n_enemys)
-    {
-        clean_character(data, data.e_pos[i]);
-        i++;
-    }
-}
-
-void print_enemy(t_data *data, t_img *imgs, t_pos pos, int dir)
-{
-	static int i = 1;
-	enum sprite_dir img_sprites[2];
-
-	get_sprites(img_sprites, dir);
-	print_img(data->win, pos, imgs[img_sprites[i % 2]].img);
-	i++;
-}
-
-
-
-// novas funcoes
-void clean_all_character(t_data data)
-{
-    int i;
-
-    i = 0;
-    while (i < data.n_enemys)
-    {
-        clean_character(data, data.e_pos[i]);
-        i++;
-    }
-    clean_character(data, data.p_pos);    
-}
-
-void print_all_character(t_data data)
-{
-    int i;
-
-    i = 0;
-    while (i < data.n_enemys)
-    {
-        print_img(data.win, data.e_pos[i], data.enemy[data.e_pos[i].sprite].img);
-        i++;
-    }
-    print_img(data.win, data.p_pos, data.player[data.p_pos.sprite].img);
 }

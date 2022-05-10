@@ -43,16 +43,12 @@ void player_move(t_data *data, int dir)
 	clean_all_character(*data);
 	if (is_valid_move(new_pos, map))
 	{
-		//move_character(data, data->player, &(data->p_pos), dir);
 		data->p_pos = new_pos;
 		data->n_moves++;
-		print_player_moves(*data);
+		print_number_of_moves(*data);
 	}
-	if (is_player_collision(pos, map, COLLECTIBLE))
-	{
-		catch_coin(data);
-		catch_coin(data);
-	}
+	catch_coin(data);
+	catch_coin(data);
     print_all_character(*data);
 	if(is_win(*data) || is_lose(*data))
 		finish_game(*data);

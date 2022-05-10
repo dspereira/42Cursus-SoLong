@@ -223,7 +223,7 @@ t_pos get_new_pos(t_pos pos, int dir);
 int get_number_enemys(t_map map);
 
 
-void print_player_moves(t_data data);
+void print_number_of_moves(t_data data);
 
 char	*ft_itoa(int n);
 
@@ -255,14 +255,13 @@ int	sys_error(int err);
 
 int is_file_type_ber(char *file);
 
-void clean_character(t_data data, t_pos pos);
-
 void get_sprites(enum sprite_dir *i_img, int dir);
 
-//void move_character2(t_data *data, t_img *imgs, t_pos *pos, int dir);
 int enemy_move(t_data *data);
 
 void clean_all_character(t_data data);
 void print_all_character(t_data data);
+
+int is_enemy_collision(t_data data ,t_pos new, int enemy_index);
 
 #endif
