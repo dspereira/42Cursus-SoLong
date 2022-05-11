@@ -64,7 +64,7 @@ static void	enemy_init(t_data *data, int i, int j)
 
 	if (!n)
 	{
-		data->n_enemys = get_number_enemys(data->map);
+		data->n_enemys = get_number_of_enemys(data->map);
 		if (data->n_enemys)
 			data->e_pos = malloc(data->n_enemys * sizeof(t_pos));
 	}

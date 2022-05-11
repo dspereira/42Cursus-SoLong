@@ -23,13 +23,17 @@ static int get_num_lines(char *path)
 
 	fd = sys_error(open(path, O_RDONLY));
 	n_lines = 0;
+	buff = '\n';
 	while (sys_error(read(fd, &buff, 1)))
 	{
 		if (buff == '\n')
 			n_lines++;
 	}
-	n_lines++;
+	if (buff != '\n')
+		n_lines++;
 	sys_error(close(fd));
+	if (!n_lines)
+		return (-1);
 	return (n_lines);
 }
 
@@ -40,7 +44,7 @@ static t_map get_map_from_file(char *path)
 	int len;
 	int i;
 
-	map.height = get_num_lines(path);
+	map.height = map_error(get_num_lines(path), "File is empty\n");
 	if(map.height)
 		map.map = oom_guard(malloc((map.height) * sizeof(char *)));
 	fd = sys_error(open(path, O_RDONLY));

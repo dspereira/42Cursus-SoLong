@@ -19,24 +19,24 @@
 # define PLAYER			'P'
 # define GRASS			'0'
 # define TREE			'1'
-# define ENEMY			'O'
+# define ENEMY			'X'
 
 // KEYS for ubuntu linux 
-
+/*
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-
+*/
 // KEYS for MAC
-/*
+
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-*/
+
 /*
 # define UP				0
 # define DOWN			1
@@ -220,7 +220,7 @@ void imgs_init(t_data *data);
 
 t_pos get_new_pos(t_pos pos, int dir);
 
-int get_number_enemys(t_map map);
+int get_number_of_enemys(t_map map);
 
 
 void print_number_of_moves(t_data data);
@@ -250,7 +250,7 @@ int move_enemy(t_data *data);
 
 int is_lose(t_data data);
 
-void map_error(int err, char *msg);
+int map_error(int err, char *msg);
 int	sys_error(int err);
 
 int is_file_type_ber(char *file);
@@ -262,6 +262,8 @@ int enemy_move(t_data *data);
 void clean_all_character(t_data data);
 void print_all_character(t_data data);
 
-int is_enemy_collision(t_data data ,t_pos new, int enemy_index);
+int is_collision_btw_enemys(t_data data ,t_pos new, int enemy_index);
+
+int get_enemy_dir(t_pos e_pos, t_pos p_pos);
 
 #endif

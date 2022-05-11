@@ -26,10 +26,7 @@ int is_player_collision(t_pos start_p, char **map, char c)
 	while (i < 4)
 	{
 		if (is_collision(pos[i], map, c))
-		{
-			printf("detetou colisão \n");
 			return (1);
-		}
 		i++;		
 	}
 	return (0);
@@ -55,7 +52,7 @@ int enemy_collision(t_pos player, t_pos enemy)
 	return (0);
 }
 
-int is_enemy_collision(t_data data ,t_pos new, int enemy_index)
+int is_collision_btw_enemys(t_data data ,t_pos new, int enemy_index)
 {
     int i;
 

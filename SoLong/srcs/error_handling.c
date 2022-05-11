@@ -20,14 +20,15 @@ void	*oom_guard(void *p)
 	return (p);
 }
 
-void map_error(int err, char *msg)
+int map_error(int err, char *msg)
 {
 	if (err == -1)
 	{
 		print_error("Error\n");
 		print_error(msg);
 		exit(EXIT_FAILURE);
-	}	
+	}
+	return (err);
 }
 
 int	sys_error(int err)
