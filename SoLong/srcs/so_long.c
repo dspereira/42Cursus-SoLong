@@ -2,7 +2,7 @@
 
 int finish_game1(t_data *data)
 {
-	free_map(data->map);
+	//free_map(data->map);
 	//free(data.win.mlx);
 	exit(0);
 	return (0);	
@@ -20,7 +20,9 @@ int main(int argc, char **argv)
 		printf("Wrong parmeters: You have to indicate the path of map\n");
 		return (0);
 	}
-	data.map = get_map(argv[1]);
+	data.map.map = 0;
+	save_alloc_mem(&data);
+	get_map(&data, argv[1]);
 	data.win.mlx = mlx_init();
 	if (data.win.mlx == 0)
 	{

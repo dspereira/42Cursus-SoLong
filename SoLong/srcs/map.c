@@ -1,17 +1,17 @@
 #include "so_long.h"
 
-//IMPORTANTE: segfoult quando o ficheiro está vazio.
-
 static int get_num_lines(char *path);
-static t_map get_map_from_file(char *path);
+//static t_map get_map_from_file(char *path);
+static t_map *get_map_from_file(t_map *map, char *path);
 
-t_map get_map(char *map_path)
+t_map *get_map(t_data *data, char *map_path)
 {
-	t_map	map;
+	t_map	*map;
 
+	map = &(data->map);
 	map_error(is_file_type_ber(map_path), "Map is not \".ber\" extension\n");
-	map = get_map_from_file(map_path);
-	map_error(map_validation(map), "Misconfiguration Map\n");
+	get_map_from_file(map, map_path);
+	map_error(map_validation(*map), "Misconfiguration Map\n");
 	return (map);
 }
 
@@ -37,30 +37,40 @@ static int get_num_lines(char *path)
 	return (n_lines);
 }
 
-static t_map get_map_from_file(char *path)
+static t_map *get_map_from_file(t_map *map, char *path)
 {
-	t_map map;
+	//t_map map;
 	int fd;
 	int len;
 	int i;
 
-	map.height = map_error(get_num_lines(path), "File is empty\n");
-	if(map.height)
-		map.map = oom_guard(malloc((map.height) * sizeof(char *)));
+	int k = 0;
+
+	map->height = map_error(get_num_lines(path), "File is empty\n");
+	if(map->height)
+	{
+		map->map = oom_guard(malloc((map->height) * sizeof(char *)));
+
+		while (k < map->height)
+		{
+			map->map[k] = 0;
+			k++;
+		}
+	}
 	fd = sys_error(open(path, O_RDONLY));
 	i = 0;
-	while (i < map.height)
+	while (i < map->height)
 	{
-		map.map[i] = get_next_line(fd);
-		if (map.map[i])
+		map->map[i] = oom_guard(get_next_line(fd));
+		if (map->map[i])
 		{
-			len = ft_strlen(map.map[i]);
-			if (map.map[i][len - 1] == '\n')
-				map.map[i][len - 1] = '\0';
+			len = ft_strlen(map->map[i]);
+			if (map->map[i][len - 1] == '\n')
+				map->map[i][len - 1] = '\0';
 		}
 		i++;
 	}
-	map.length = ft_strlen(map.map[0]);
+	map->length = ft_strlen(map->map[0]);
 	sys_error(close(fd));
 	return (map);
 }
@@ -92,14 +102,20 @@ int is_file_type_ber(char *file)
 void free_map(t_map map)
 {
 	int i;
+	char **m;
 
+	m = map.map;
+	if (!m)
+		return ;
 	i = 0;
 	while (i < map.height)
 	{
-		if (map.map[i])
-			free(map.map[i]);
+		if (m[i])
+		{
+			free(m[i]);
+		}
 		i++;
 	}
-	if (map.map)
-		free(map.map);
+	if (m)
+		free(m);
 }

@@ -8,8 +8,8 @@ void finish_game(t_data data)
 	mlx_destroy_image(data.win.mlx, data.imgs.player);
 	mlx_destroy_image(data.win.mlx, data.imgs.tree);
 	mlx_destroy_window(data.win.mlx, data.win.mlx_win);*/
-	free_map(data.map);
-	free(data.win.mlx);
+	//free_map(data.map);
+	//free(data.win.mlx);
 	exit(0);	
 }
 

@@ -66,7 +66,7 @@ static void	enemy_init(t_data *data, int i, int j)
 	{
 		data->n_enemys = get_number_of_enemys(data->map);
 		if (data->n_enemys)
-			data->e_pos = malloc(data->n_enemys * sizeof(t_pos));
+			data->e_pos = oom_guard(malloc(data->n_enemys * sizeof(t_pos)));
 	}
 	print_img_from_map(*data, i, j);
 	data->e_pos[n] = get_window_pos(i, j);

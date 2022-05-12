@@ -14,6 +14,17 @@ void	*oom_guard(void *p)
 {
 	if (!p)
 	{
+		free_alloc_mem();
+		print_error("Out of memory!\n");
+		exit(EXIT_FAILURE);
+	}
+	return (p);
+}
+
+void	*oom_guard2(void *p)
+{
+	if (!p)
+	{
 		print_error("Out of memory!\n");
 		exit(EXIT_FAILURE);
 	}

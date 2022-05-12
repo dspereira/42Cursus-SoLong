@@ -22,21 +22,22 @@
 # define ENEMY			'X'
 
 // KEYS for ubuntu linux 
-/*
+
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-*/
+
 // KEYS for MAC
 
+/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-
+*/
 /*
 # define UP				0
 # define DOWN			1
@@ -55,6 +56,14 @@
 
 #define PLAYER_H_REAL	59
 #define PLAYER_W_REAL	39
+
+
+# define NO_TYPE 		0
+# define TYPE_MAP		1
+
+
+
+//#define malloc(x) NULL
 
 enum 
 {
@@ -140,9 +149,16 @@ typedef struct s_data
 }	t_data;
 
 
+typedef struct s_alloc_mem
+{
+	char	**map;
+}	t_alloc_mem;
+
+
 /* get_map.c */
-t_map get_map(char *map_path);
-void free_map(t_map map);
+//t_map get_map(char *map_path);
+t_map *get_map(t_data *data, char *map_path);
+
 
 /* map_validations.c*/
 int map_validation(t_map map);
@@ -179,6 +195,7 @@ void finish_game(t_data data);
 
 /* error_handling.c */
 void	*oom_guard(void *p);
+//void	*oom_guard(void *p, t_data data);
 
 // decidir onde colocar esta função
 void *get_img(t_data data, int index);
@@ -265,5 +282,16 @@ void print_all_character(t_data data);
 int is_collision_btw_enemys(t_data data ,t_pos new, int enemy_index);
 
 int get_enemy_dir(t_pos e_pos, t_pos p_pos);
+
+void save_data(void *data);
+void clean_data(void);
+
+void	*oom_guard2(void *p);
+
+
+void	save_alloc_mem(t_data *data);
+void	free_alloc_mem(void);
+
+void free_map(t_map map);
 
 #endif

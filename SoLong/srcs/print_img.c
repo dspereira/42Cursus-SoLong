@@ -59,6 +59,7 @@ void print_number_of_moves(t_data data)
 	int		color;
 	int		n;
 	int		i;
+	char	*num;
 
 	win = data.win;
 	n = data.n_moves;
@@ -67,5 +68,7 @@ void print_number_of_moves(t_data data)
 	while (i < 3)
 		print_img_from_map(data, 0, i++);
 	mlx_string_put(win.mlx, win.mlx_win, 30, 30, color, "MOVEMENTS:");
-	mlx_string_put(win.mlx, win.mlx_win, 130, 30, color, ft_itoa(n));
+	num = ft_itoa(n);
+	mlx_string_put(win.mlx, win.mlx_win, 130, 30, color, num);
+	free(num);
 }
