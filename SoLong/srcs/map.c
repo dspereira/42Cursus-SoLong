@@ -1,8 +1,11 @@
 #include "so_long.h"
 
 static int get_num_lines(char *path);
-//static t_map get_map_from_file(char *path);
 static t_map *get_map_from_file(t_map *map, char *path);
+static char **init_map(int size);
+
+
+
 
 t_map *get_map(t_data *data, char *map_path)
 {
@@ -39,24 +42,13 @@ static int get_num_lines(char *path)
 
 static t_map *get_map_from_file(t_map *map, char *path)
 {
-	//t_map map;
 	int fd;
 	int len;
 	int i;
 
-	int k = 0;
-
 	map->height = map_error(get_num_lines(path), "File is empty\n");
 	if(map->height)
-	{
-		map->map = oom_guard(malloc((map->height) * sizeof(char *)));
-
-		while (k < map->height)
-		{
-			map->map[k] = 0;
-			k++;
-		}
-	}
+		map->map = init_map(map->height);
 	fd = sys_error(open(path, O_RDONLY));
 	i = 0;
 	while (i < map->height)
@@ -74,6 +66,22 @@ static t_map *get_map_from_file(t_map *map, char *path)
 	sys_error(close(fd));
 	return (map);
 }
+
+static char **init_map(int size)
+{	
+	char **map;
+	int i;
+
+	map = oom_guard(malloc(size * sizeof(char *)));
+	i = 0;
+	while (i < size)
+	{
+		map[i] = 0;
+		i++;
+	}
+	return (map);
+}
+
 
 int is_file_type_ber(char *file)
 {
@@ -111,11 +119,8 @@ void free_map(t_map map)
 	while (i < map.height)
 	{
 		if (m[i])
-		{
 			free(m[i]);
-		}
 		i++;
 	}
-	if (m)
-		free(m);
+	free(m);
 }
