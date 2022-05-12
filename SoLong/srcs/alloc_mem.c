@@ -20,6 +20,7 @@ void	free_alloc_mem(void)
 	free_map(data->map);
 	if (data->e_pos)
 		free(data->e_pos);
+	clean_mlx(*data);
 }
 
 static t_data	*alloc_mem(t_data *data)

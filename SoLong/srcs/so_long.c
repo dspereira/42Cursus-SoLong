@@ -22,6 +22,21 @@ int main(int argc, char **argv)
 	}
 	data.map.map = 0;
 	data.e_pos = 0;
+	data.win.mlx = 0;
+	data.win.mlx_win = 0;
+	int i = 0;
+	while (i < N_TEXTURES)
+	{
+		data.textures[i].img = 0;
+		i++;
+	}
+	i = 0;
+	while (i < N_SPRITES)
+	{
+		data.player[i].img = 0;
+		data.enemy[i].img = 0;
+		i++;
+	}
 	save_alloc_mem(&data);
 	get_map(&data, argv[1]);
 	data.win.mlx = mlx_init();

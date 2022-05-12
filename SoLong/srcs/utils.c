@@ -41,3 +41,27 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
+void clean_mlx(t_data data)
+{
+	int i;
+
+	i = 0;
+	while (i < N_SPRITES)
+	{
+		if (data.win.mlx && data.enemy[i].img)
+			mlx_destroy_image(data.win.mlx, data.enemy[i].img);
+		if (data.win.mlx && data.player[i].img)
+			mlx_destroy_image(data.win.mlx, data.player[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < N_TEXTURES)
+	{
+		if (data.win.mlx && data.textures[i].img)
+			mlx_destroy_image(data.win.mlx, data.textures[i].img);
+		i++;
+	}
+	if (data.win.mlx && data.win.mlx_win)
+		mlx_destroy_window(data.win.mlx, data.win.mlx_win);
+}

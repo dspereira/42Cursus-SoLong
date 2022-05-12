@@ -61,6 +61,9 @@
 # define NO_TYPE 		0
 # define TYPE_MAP		1
 
+# define N_SPRITES		12
+# define N_TEXTURES		6
+
 
 
 //#define malloc(x) NULL
@@ -138,9 +141,9 @@ typedef struct s_data
 	t_map	map;
 	t_win	win;
 	t_img 	imgs[50];
-	t_img 	textures[6];
-	t_img	player[12];
-	t_img	enemy[12];
+	t_img 	textures[N_TEXTURES];
+	t_img	player[N_SPRITES];
+	t_img	enemy[N_SPRITES];
 	t_pos 	*e_pos;
 	t_pos	p_pos;
 	int 	n_coins;
@@ -293,5 +296,7 @@ void	save_alloc_mem(t_data *data);
 void	free_alloc_mem(void);
 
 void free_map(t_map map);
+
+void clean_mlx(t_data data);
 
 #endif

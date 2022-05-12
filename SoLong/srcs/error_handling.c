@@ -21,20 +21,11 @@ void	*oom_guard(void *p)
 	return (p);
 }
 
-void	*oom_guard2(void *p)
-{
-	if (!p)
-	{
-		print_error("Out of memory!\n");
-		exit(EXIT_FAILURE);
-	}
-	return (p);
-}
-
 int map_error(int err, char *msg)
 {
 	if (err == -1)
 	{
+		free_alloc_mem();
 		print_error("Error\n");
 		print_error(msg);
 		exit(EXIT_FAILURE);
@@ -46,6 +37,7 @@ int	sys_error(int err)
 {
 	if (err == -1)
 	{
+		free_alloc_mem();
 		print_error("Error\n");
 		print_error(strerror(errno));
 		print_error("\n");
