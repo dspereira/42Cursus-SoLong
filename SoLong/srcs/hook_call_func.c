@@ -5,7 +5,7 @@ int	key_down(int keycode, t_data *data)
 {
 	player_start_move(keycode, data);
 	if (keycode == KEY_ESC)
-		finish_game(*data);
+		finish_game();
 	return (0);
 }
 
@@ -19,4 +19,10 @@ int enemy_call(t_data *data)
 {
 	enemy_move(data);
     return (0);
+}
+
+int end_game(t_data *data)
+{
+	finish_game();
+	return (0);
 }

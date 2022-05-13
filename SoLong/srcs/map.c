@@ -4,9 +4,6 @@ static int get_num_lines(char *path);
 static t_map *get_map_from_file(t_map *map, char *path);
 static char **init_map(int size);
 
-
-
-
 t_map *get_map(t_data *data, char *map_path)
 {
 	t_map	*map;

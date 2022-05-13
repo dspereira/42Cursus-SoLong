@@ -1,16 +1,9 @@
 #include "so_long.h"
 
-void finish_game(t_data data)
+void finish_game(void)
 {
-	/*mlx_destroy_image(data.win.mlx, data.imgs.coin);
-	mlx_destroy_image(data.win.mlx, data.imgs.exit);
-	mlx_destroy_image(data.win.mlx, data.imgs.grass);
-	mlx_destroy_image(data.win.mlx, data.imgs.player);
-	mlx_destroy_image(data.win.mlx, data.imgs.tree);
-	mlx_destroy_window(data.win.mlx, data.win.mlx_win);*/
-	//free_map(data.map);
-	//free(data.win.mlx);
-	exit(0);	
+	free_alloc_mem();
+	exit(0);
 }
 
 int is_valid_move(t_pos pos, char **map)

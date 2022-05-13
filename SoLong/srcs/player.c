@@ -51,5 +51,5 @@ void player_move(t_data *data, int dir)
 	catch_coin(data);
     print_all_character(*data);
 	if(is_win(*data) || is_lose(*data))
-		finish_game(*data);
+		finish_game();
 }

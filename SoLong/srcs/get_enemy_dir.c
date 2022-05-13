@@ -30,10 +30,12 @@ int get_enemy_dir(t_pos e_pos, t_pos p_pos)
 
 static int get_random_num(int max_value)
 {
+    static int i = 0;
     int r;
 
-    srand(time(NULL));
+    srand(time(NULL) + i);
 	r = rand() % (max_value + 1);
+    i++;
     return (r);
 }
 

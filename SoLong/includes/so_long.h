@@ -22,22 +22,22 @@
 # define ENEMY			'X'
 
 // KEYS for ubuntu linux 
-
+/*
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-
+*/
 // KEYS for MAC
 
-/*
+
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-*/
+
 /*
 # define UP				0
 # define DOWN			1
@@ -194,7 +194,7 @@ void move_player(t_data *data, t_pos p);
 
 /* game_rules.c */
 void make_move(t_data *data, int dir);
-void finish_game(t_data data);
+void finish_game(void);
 
 /* error_handling.c */
 void	*oom_guard(void *p);
@@ -203,7 +203,7 @@ void	*oom_guard(void *p);
 // decidir onde colocar esta função
 void *get_img(t_data data, int index);
 
-
+int end_game(t_data *data);
 
 
 /* move_character */

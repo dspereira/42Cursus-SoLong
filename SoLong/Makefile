@@ -1,4 +1,4 @@
-NAME		= 	solong
+NAME		= 	so_long
 
 SOLONG		= 	$(wildcard srcs/*.c)
 GNL			= 	$(wildcard get_next_line/*.c)

@@ -10,7 +10,7 @@ int enemy_move(t_data *data)
     if(time_counter(1))
         move(data);
     if(is_win(*data) || is_lose(*data))
-		finish_game(*data);
+		finish_game();
     return (0);
 }
 
