@@ -45,3 +45,15 @@ int	sys_error(int err)
 	}
 	return (err);
 }
+
+void *mlx_error(void *p)
+{		
+	if (!p)
+	{
+		free_alloc_mem();
+		print_error("Error\n");
+		print_error("mlx fail\n");
+		exit(EXIT_FAILURE);
+	}
+	return (p);
+}

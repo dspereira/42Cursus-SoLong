@@ -299,4 +299,6 @@ void free_map(t_map map);
 
 void clean_mlx(t_data data);
 
+void *mlx_error(void *p);
+
 #endif
