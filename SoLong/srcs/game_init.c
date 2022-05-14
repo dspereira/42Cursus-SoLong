@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 15:18:43 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 15:24:29 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	map_init(t_data *data);
@@ -22,8 +34,6 @@ static void	map_init(t_data *data)
 
 	map = data->map;
 	i = 0;
-	data->n_moves = 0;
-	data->n_enemys = 0;
 	while (i < map.height)
 	{
 		j = 0;

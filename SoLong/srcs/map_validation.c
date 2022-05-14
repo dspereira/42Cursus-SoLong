@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 15:24:51 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 15:29:20 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static int map_is_rectangle(t_map map);
-static int map_have_walls(t_map map);
-static int search_elemnts(t_map map, int *c, int *e, int *p);
-static int map_have_all_elements(t_map map);
+static int	map_is_rectangle(t_map map);
+static int	map_have_walls(t_map map);
+static int	search_elemnts(t_map map, int *c, int *e, int *p);
+static int	map_have_all_elements(t_map map);
 
-int map_validation(t_map map)
+int	map_validation(t_map map)
 {
-    if (!map_is_rectangle(map) 
-		|| !map_have_walls(map) 
+	if (!map_is_rectangle(map)
+		|| !map_have_walls(map)
 		|| !map_have_all_elements(map))
-        return (-1);
-    return (1);
+		return (-1);
+	return (1);
 }
 
-static int map_is_rectangle(t_map map)
+static int	map_is_rectangle(t_map map)
 {
-	int  i;
+	int	i;
 
 	i = 0;
 	while (i < map.height)
@@ -32,12 +44,12 @@ static int map_is_rectangle(t_map map)
 	return (1);
 }
 
-static int map_have_walls(t_map map)
+static int	map_have_walls(t_map map)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < map.length)
+	while (i < map.length)
 	{
 		if (map.map[0][i] != '1')
 			return (0);
@@ -46,7 +58,7 @@ static int map_have_walls(t_map map)
 		i++;
 	}
 	i = 0;
-	while(i < map.height)
+	while (i < map.height)
 	{
 		if (map.map[i][0] != '1')
 			return (0);
@@ -57,7 +69,7 @@ static int map_have_walls(t_map map)
 	return (1);
 }
 
-static int search_elemnts(t_map map, int *c, int *e, int *p)
+static int	search_elemnts(t_map map, int *c, int *e, int *p)
 {
 	int		i;
 	int		j;
@@ -85,18 +97,18 @@ static int search_elemnts(t_map map, int *c, int *e, int *p)
 	return (1);
 }
 
-static int map_have_all_elements(t_map map)
+static int	map_have_all_elements(t_map map)
 {
-	int collect;
-	int exit;
-	int player;
-	int err;
+	int	collect;
+	int	exit;
+	int	player;
+	int	err;
 
 	collect = 0;
 	exit = 0;
 	player = 0;
 	err = search_elemnts(map, &collect, &exit, &player);
-	if(err && player > 0 && exit > 0 && collect > 0)
+	if (err && player > 0 && exit > 0 && collect > 0)
 		return (1);
 	return (0);
 }

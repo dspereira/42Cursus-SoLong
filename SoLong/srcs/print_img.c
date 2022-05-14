@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_img.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 13:49:40 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 13:56:46 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void *get_map_img(t_data data, char c)
+void	*get_map_img(t_data data, char c)
 {
-	void *img;
+	void	*img;
 
 	if (c == GRASS)
 		img = data.textures[GRASS_1].img;
@@ -18,10 +30,10 @@ void *get_map_img(t_data data, char c)
 		img = data.enemy[DOWN_0].img;
 	else
 		img = 0;
-	return (img);	
+	return (img);
 }
 
-void print_img_from_map(t_data data, int i, int j)
+void	print_img_from_map(t_data data, int i, int j)
 {
 	t_pos	pos;
 	t_win	win;
@@ -35,25 +47,27 @@ void print_img_from_map(t_data data, int i, int j)
 	print_img(win, pos, get_map_img(data, c));
 }
 
-void print_img(t_win win, t_pos pos, void *img)
+void	print_img(t_win win, t_pos pos, void *img)
 {
 	mlx_put_image_to_window(win.mlx, win.mlx_win, img, pos.x, pos.y);
 }
 
-void print_all_character(t_data data)
+void	print_all_character(t_data data)
 {
-    int i;
+	int	sprite;
+	int	i;
 
-    i = 0;
-    while (i < data.n_enemys)
-    {
-        print_img(data.win, data.e_pos[i], data.enemy[data.e_pos[i].sprite].img);
-        i++;
-    }
-    print_img(data.win, data.p_pos, data.player[data.p_pos.sprite].img);
+	i = 0;
+	while (i < data.n_enemys)
+	{
+		sprite = data.e_pos[i].sprite;
+		print_img(data.win, data.e_pos[i], data.enemy[sprite].img);
+		i++;
+	}
+	print_img(data.win, data.p_pos, data.player[data.p_pos.sprite].img);
 }
 
-void print_number_of_moves(t_data data)
+void	print_number_of_moves(t_data data)
 {
 	t_win	win;
 	int		color;

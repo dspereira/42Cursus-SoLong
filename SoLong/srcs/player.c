@@ -1,6 +1,16 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 15:36:04 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 15:37:53 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// criar função de update numero de jogadas
+#include "so_long.h"
 
 int	player_start_move(int keycode, t_data *data)
 {
@@ -10,10 +20,10 @@ int	player_start_move(int keycode, t_data *data)
 	return (0);
 }
 
-int player_stop_move(int keycode, t_data *data)
+int	player_stop_move(int keycode, t_data *data)
 {
-	void *img;
-	int *sprite;
+	void	*img;
+	int		*sprite;
 
 	sprite = &(data->p_pos.sprite);
 	img = 0;
@@ -31,12 +41,12 @@ int player_stop_move(int keycode, t_data *data)
 	return (0);
 }
 
-void player_move(t_data *data, int dir)
+void	player_move(t_data *data, int dir)
 {
-	t_pos new_pos;
-	t_pos pos;
-	char **map;
-	
+	t_pos	new_pos;
+	t_pos	pos;
+	char	**map;
+
 	map = data->map.map;
 	pos = data->p_pos;
 	new_pos = get_new_pos(pos, dir);
@@ -49,7 +59,7 @@ void player_move(t_data *data, int dir)
 	}
 	catch_coin(data);
 	catch_coin(data);
-    print_all_character(*data);
-	if(is_win(*data) || is_lose(*data))
+	print_all_character(*data);
+	if (is_win(*data) || is_lose(*data))
 		finish_game();
 }

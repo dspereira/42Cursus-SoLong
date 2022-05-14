@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 09:30:05 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 09:30:22 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void print_error(char *str)
+void	print_error(char *str)
 {
-	int size;
+	int	size;
 
 	if (!str)
 		return ;
@@ -21,7 +33,7 @@ void	*oom_guard(void *p)
 	return (p);
 }
 
-int map_error(int err, char *msg)
+int	map_error(int err, char *msg)
 {
 	if (err == -1)
 	{
@@ -46,7 +58,7 @@ int	sys_error(int err)
 	return (err);
 }
 
-void *mlx_error(void *p)
+void	*mlx_error(void *p)
 {		
 	if (!p)
 	{

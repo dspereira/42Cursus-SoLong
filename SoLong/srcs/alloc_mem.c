@@ -1,11 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   alloc_mem.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 10:18:12 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/14 10:18:19 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static t_data	*alloc_mem(t_data *data);
-
-static t_data *get_alloc_mem(void)
-{
-	return (alloc_mem(0));
-}
+static t_data	*get_alloc_mem(void);
 
 void	save_alloc_mem(t_data *data)
 {
@@ -30,4 +38,9 @@ static t_data	*alloc_mem(t_data *data)
 	if (!d && data)
 		d = data;
 	return (d);
+}
+
+static t_data	*get_alloc_mem(void)
+{
+	return (alloc_mem(0));
 }

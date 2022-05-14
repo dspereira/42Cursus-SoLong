@@ -14,6 +14,7 @@
 
 # define EXT			".ber"
 
+
 # define COLLECTIBLE	'C'
 # define EXIT			'E'
 # define PLAYER			'P'
@@ -21,23 +22,24 @@
 # define TREE			'1'
 # define ENEMY			'X'
 
+
 // KEYS for ubuntu linux 
-/*
+
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-*/
+
 // KEYS for MAC
 
-
+/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-
+*/
 /*
 # define UP				0
 # define DOWN			1
@@ -184,7 +186,7 @@ void print_img(t_win win, t_pos pos, void *img);
 void clean_player(t_data data);
 
 /* game_utils.c */
-t_pos *get_player_corners(t_pos start_pos, t_pos *corners);
+t_pos *get_corners(t_pos start_pos, t_pos *corners);
 t_map_pos get_map_pos(t_pos pos);
 
 /* player_move.c */
@@ -273,7 +275,6 @@ int is_lose(t_data data);
 int map_error(int err, char *msg);
 int	sys_error(int err);
 
-int is_file_type_ber(char *file);
 
 void get_sprites(enum sprite_dir *i_img, int dir);
 
@@ -300,5 +301,7 @@ void free_map(t_map map);
 void clean_mlx(t_data data);
 
 void *mlx_error(void *p);
+
+void print_error(char *str);
 
 #endif
