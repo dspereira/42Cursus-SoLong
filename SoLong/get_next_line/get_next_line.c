@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diogo <diogo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 10:02:59 by diogo             #+#    #+#             */
-/*   Updated: 2021/11/18 16:42:05 by diogo            ###   ########.fr       */
+/*   Updated: 2022/05/15 14:11:18 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*line_cat(char *line, char *buff, int n)
 	else
 		line_len = ft_strlen(line);
 	new_line = malloc(line_len + n + 1 + sizeof(char));
+	if (!new_line)
+		return (0);
 	if (line_len > 0)
 	{
 		ft_strlcpy(new_line, line, line_len + 1);
