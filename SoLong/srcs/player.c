@@ -6,11 +6,13 @@
 /*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:36:04 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 15:37:53 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/15 10:52:43 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	player_move(t_data *data, int dir);
 
 int	player_start_move(int keycode, t_data *data)
 {
@@ -41,7 +43,7 @@ int	player_stop_move(int keycode, t_data *data)
 	return (0);
 }
 
-void	player_move(t_data *data, int dir)
+static void	player_move(t_data *data, int dir)
 {
 	t_pos	new_pos;
 	t_pos	pos;

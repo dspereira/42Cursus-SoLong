@@ -6,7 +6,7 @@
 /*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 12:29:27 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 15:23:23 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:16:40 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		print_error("Error\n");
-		print_error("Wrong parmeters: You have to indicate the path of map\n");
+		print_msg(STDERR_FD, "Error\n");
+		print_msg(STDERR_FD, "no map was specified\n");
 		return (0);
 	}
 	data_init(&data);

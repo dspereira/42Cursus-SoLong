@@ -1,19 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/15 11:35:07 by dsilveri          #+#    #+#             */
+/*   Updated: 2022/05/15 13:59:30 by dsilveri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <mlx.h>
-#include <time.h>
+# include <time.h>
 # include <errno.h>
 # include <string.h>
-#include "../get_next_line/get_next_line.h"
+# include "../get_next_line/get_next_line.h"
 
 # define STDERR_FD		2
+# define STDOUT_FD		1
 
 # define EXT			".ber"
-
 
 # define COLLECTIBLE	'C'
 # define EXIT			'E'
@@ -21,7 +32,6 @@
 # define GRASS			'0'
 # define TREE			'1'
 # define ENEMY			'X'
-
 
 // KEYS for ubuntu linux 
 
@@ -40,37 +50,20 @@
 # define KEY_RIGHT		2
 # define KEY_ESC		53
 */
-/*
-# define UP				0
-# define DOWN			1
-# define LEFT			2
-# define RIGHT			3
-*/
 
 # define IMG_SIZE		60
 
 # define MOVE_RANGE		20
 
-# define PLAYER_SIZE	58
-
-#define PLAYER_H		59
-#define PLAYER_W		39
-
-#define PLAYER_H_REAL	59
-#define PLAYER_W_REAL	39
-
-
-# define NO_TYPE 		0
-# define TYPE_MAP		1
+# define PLAYER_H		59
+# define PLAYER_W		39
 
 # define N_SPRITES		12
 # define N_TEXTURES		6
 
-
-
 //#define malloc(x) NULL
 
-enum 
+enum
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -81,7 +74,7 @@ enum
 	ON_DESTROY = 17
 };
 
-enum Index_image
+enum
 {
 	GRASS_1,
 	TREE_1,
@@ -89,7 +82,7 @@ enum Index_image
 	EXIT_1
 };
 
-enum sprite_dir
+enum
 {
 	UP_0,
 	UP_1,
@@ -105,32 +98,31 @@ enum sprite_dir
 	RIGHT_2,
 };
 
-
 typedef struct s_img
 {
-	char path[50];
-	void *img;
+	char	path[50];
+	void	*img;
 }	t_img;
 
 typedef struct s_map_pos
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 }	t_map_pos;
 
 typedef struct s_pos
 {
-	int x;
-	int y;
-	int sprite;
+	int	x;
+	int	y;
+	int	sprite;
 }	t_pos;
 
 typedef struct s_map
 {
-	int length;
-	int height;
-	char **map;
-} t_map;
+	int		length;
+	int		height;
+	char	**map;
+}	t_map;
 
 typedef struct s_win
 {
@@ -142,166 +134,93 @@ typedef struct s_data
 {
 	t_map	map;
 	t_win	win;
-	t_img 	imgs[50];
-	t_img 	textures[N_TEXTURES];
+	t_img	textures[N_TEXTURES];
 	t_img	player[N_SPRITES];
 	t_img	enemy[N_SPRITES];
-	t_pos 	*e_pos;
+	t_pos	*e_pos;
 	t_pos	p_pos;
-	int 	n_coins;
-	int 	n_moves;
-	int 	n_enemys;
+	int		n_coins;
+	int		n_moves;
+	int		n_enemys;
 }	t_data;
 
-
-typedef struct s_alloc_mem
-{
-	char	**map;
-}	t_alloc_mem;
-
-
 /* get_map.c */
-//t_map get_map(char *map_path);
-t_map *get_map(t_data *data, char *map_path);
+t_map		*get_map(t_data *data, char *map_path);
 
+/* map_validation.c */
+int			map_validation(t_map map);
 
-/* map_validations.c*/
-int map_validation(t_map map);
+/* free_map.c */
+void		free_map(t_map map);
 
 /* game_init.c */
-t_data game_init(t_data *data);
+t_data		game_init(t_data *data);
 
-/* key_control.c */
-int	key_control(int keycode, t_data *data);
+/* imgs_init.c */
+void		imgs_init(t_data *data);
 
-/* catch_coin.c */
-void catch_coin(t_data *data);
+/* hook_call_func.c */
+int			key_down(int keycode, t_data *data);
+int			key_up(int keycode, t_data *data);
+int			enemy_call(t_data *data);
+int			end_game(t_data *data);
 
-/* collision.c */
-int is_collision(t_pos p, char **map, char c);
-int is_player_collision(t_pos start_p, char **map, char c);
+/* player.c */
+int			player_start_move(int keycode, t_data *data);
+int			player_stop_move(int keycode, t_data *data);
 
-/* print_img.c */
-void print_img(t_win win, t_pos pos, void *img);
-void clean_player(t_data data);
+/* enemy.c */
+int			enemy_move(t_data *data);
+int			get_number_of_enemys(t_map map);
 
-/* game_utils.c */
-t_pos *get_corners(t_pos start_pos, t_pos *corners);
-t_map_pos get_map_pos(t_pos pos);
-
-/* player_move.c */
-void update_player_pos(t_data *data, t_pos pos);
-void move_player(t_data *data, t_pos p);
-
+/* get_enemy_dir.c */
+int			get_enemy_dir(t_pos e_pos, t_pos p_pos);
 
 /* game_rules.c */
-void make_move(t_data *data, int dir);
-void finish_game(void);
+void		finish_game(void);
+int			is_valid_move(t_pos pos, char **map);
+int			is_win(t_data data);
+int			is_lose(t_data data);
+
+/* game_utils.c */
+t_map_pos	get_map_pos(t_pos pos);
+t_pos		get_window_pos(int i, int j);
+int			get_sprite(int sprite, int dir);
+t_pos		get_new_pos(t_pos pos, int dir);
+t_pos		*get_corners(t_pos start_pos, t_pos *corners);
+
+/* print_img.c */
+void		*get_map_img(t_data data, char c);
+void		print_img_from_map(t_data data, int i, int j);
+void		print_img(t_win win, t_pos pos, void *img);
+void		print_all_character(t_data data);
+void		print_number_of_moves(t_data data);
+
+/* clean_all_character.c */
+void		clean_all_character(t_data data);
+
+/* catch_coin.c */
+void		catch_coin(t_data *data);
+
+/* collisions.c */
+int			is_collision(t_pos pos, char **map, char c);
+int			is_player_collision(t_pos start_p, char **map, char c);
+int			enemy_collision(t_pos player, t_pos enemy);
+int			is_collision_btw_enemys(t_data data, t_pos new, int enemy_index);
+
+/* alloc_mem.c */
+void		save_alloc_mem(t_data *data);
+void		free_alloc_mem(void);
 
 /* error_handling.c */
-void	*oom_guard(void *p);
-//void	*oom_guard(void *p, t_data data);
+void		*oom_guard(void *p);
+int			map_error(int err, char *msg);
+int			sys_error(int err);
+void		*mlx_error(void *p);
 
-// decidir onde colocar esta função
-void *get_img(t_data data, int index);
-
-int end_game(t_data *data);
-
-
-/* move_character */
-void move_character(t_data *data, t_img *imgs, t_pos *pos, int dir);
-
-
-void move_player1(t_data *data, t_pos p, int dir);
-
-int key_up(int keycode, t_data *data);
-
-int is_valid_move(t_pos pos, char **map);
-
-int enemy_collision(t_pos player, t_pos enemy);
-
-
-void update_character_pos(t_pos *dst_pos, t_pos src_pos);
-
-
-
-//void print_img1(t_win win, t_pos pos, void *img);
-
-void print_player(t_data data, int sprite);
-//void print_enemy(t_data data, int sprite);
-
-t_pos get_window_pos(int i, int j);
-
-void print_img_from_map(t_data data, int i, int j);
-
-int enemy_call1(t_data *data);
-
-t_map_pos get_map_pos(t_pos pos);
-
-void imgs_init(t_data *data);
-
-t_pos get_new_pos(t_pos pos, int dir);
-
-int get_number_of_enemys(t_map map);
-
-
-void print_number_of_moves(t_data data);
-
-char	*ft_itoa(int n);
-
-
-int enemy_call(t_data *data);
-
-int get_random_direction(t_pos e_pos, t_pos p_pos);
-int make_move_2(t_data *data, t_pos *e_pos, int dir);
-
-int	key_down(int keycode, t_data *data);
-
-
-void player_move(t_data *data, int dir);
-
-int is_win(t_data data);
-
-void *get_map_img(t_data data, char c);
-
-int	player_start_move(int keycode, t_data *data);
-int player_stop_move(int keycode, t_data *data);
-
-
-int move_enemy(t_data *data);
-
-int is_lose(t_data data);
-
-int map_error(int err, char *msg);
-int	sys_error(int err);
-
-
-void get_sprites(enum sprite_dir *i_img, int dir);
-
-int enemy_move(t_data *data);
-
-void clean_all_character(t_data data);
-void print_all_character(t_data data);
-
-int is_collision_btw_enemys(t_data data ,t_pos new, int enemy_index);
-
-int get_enemy_dir(t_pos e_pos, t_pos p_pos);
-
-void save_data(void *data);
-void clean_data(void);
-
-void	*oom_guard2(void *p);
-
-
-void	save_alloc_mem(t_data *data);
-void	free_alloc_mem(void);
-
-void free_map(t_map map);
-
-void clean_mlx(t_data data);
-
-void *mlx_error(void *p);
-
-void print_error(char *str);
+/* utils.c */
+char		*ft_itoa(int n);
+void		clean_mlx(t_data data);
+void		print_msg(int fd, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 10:18:33 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 13:44:44 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:08:37 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,14 @@ void	clean_mlx(t_data data)
 	}
 	if (data.win.mlx && data.win.mlx_win)
 		mlx_destroy_window(data.win.mlx, data.win.mlx_win);
+}
+
+void	print_msg(int fd, char *str)
+{
+	int	size;
+
+	if (!str)
+		return ;
+	size = ft_strlen(str);
+	write(fd, str, size);
 }

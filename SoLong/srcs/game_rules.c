@@ -6,7 +6,7 @@
 /*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 14:05:47 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 14:37:20 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:14:02 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ int	is_win(t_data data)
 		if (is_collision(p[i], data.map.map, EXIT))
 		{
 			if (n_coins == 0)
+			{
+				print_msg(STDOUT_FD, "You Win\n");
 				return (1);
+			}
 		}
 		i++;
 	}	
@@ -55,7 +58,7 @@ int	is_lose(t_data data)
 	{
 		if (enemy_collision(data.p_pos, data.e_pos[i]))
 		{
-			printf("you lose!\n");
+			print_msg(STDOUT_FD, "You Lose\n");
 			return (1);
 		}
 		i++;
