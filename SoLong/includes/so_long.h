@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 11:35:07 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/15 13:59:30 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/16 16:09:23 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,20 @@
 # define ENEMY			'X'
 
 // KEYS for ubuntu linux 
-
+/*
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
+*/
 
 // KEYS for MAC
-
-/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
-*/
 
 # define IMG_SIZE		60
 
@@ -61,7 +59,7 @@
 # define N_SPRITES		12
 # define N_TEXTURES		6
 
-//#define malloc(x) NULL
+//# define malloc(x) NULL
 
 enum
 {
@@ -74,17 +72,17 @@ enum
 	ON_DESTROY = 17
 };
 
-enum
+enum e_textures
 {
-	GRASS_1,
+	GRASS_1 = 0,
 	TREE_1,
 	COIN_1,
 	EXIT_1
 };
 
-enum
+enum e_sprites
 {
-	UP_0,
+	UP_0 = 0,
 	UP_1,
 	UP_2,
 	DOWN_0,
@@ -185,9 +183,10 @@ int			is_lose(t_data data);
 /* game_utils.c */
 t_map_pos	get_map_pos(t_pos pos);
 t_pos		get_window_pos(int i, int j);
-int			get_sprite(int sprite, int dir);
-t_pos		get_new_pos(t_pos pos, int dir);
 t_pos		*get_corners(t_pos start_pos, t_pos *corners);
+
+/* game_utils2.c */
+t_pos		get_new_pos(t_pos pos, int dir, char c);
 
 /* print_img.c */
 void		*get_map_img(t_data data, char c);

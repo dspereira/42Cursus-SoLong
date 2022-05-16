@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:36:04 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/15 10:52:43 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:43:42 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static void	player_move(t_data *data, int dir);
 
@@ -51,7 +52,7 @@ static void	player_move(t_data *data, int dir)
 
 	map = data->map.map;
 	pos = data->p_pos;
-	new_pos = get_new_pos(pos, dir);
+	new_pos = get_new_pos(pos, dir, PLAYER);
 	clean_all_character(*data);
 	if (is_valid_move(new_pos, map))
 	{

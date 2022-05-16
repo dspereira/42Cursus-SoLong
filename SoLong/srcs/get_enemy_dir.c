@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_enemy_dir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 14:38:34 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 14:43:45 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:25:52 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static int	get_random_num(int max_value);
 static int	get_rand_direction(void);
@@ -20,7 +21,7 @@ int	get_enemy_dir(t_pos e_pos, t_pos p_pos)
 	int	r;
 	int	dir;
 
-	r = get_random_num(2);
+	r = get_random_num(4);
 	if (r == 0)
 	{
 		if (p_pos.x < e_pos.x)
@@ -42,12 +43,9 @@ int	get_enemy_dir(t_pos e_pos, t_pos p_pos)
 
 static int	get_random_num(int max_value)
 {
-	static int	i = 0;
-	int			r;
+	int	r;
 
-	srand(time(NULL) + i);
 	r = rand() % (max_value + 1);
-	i++;
 	return (r);
 }
 

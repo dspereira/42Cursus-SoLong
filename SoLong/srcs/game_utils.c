@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:38:47 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 15:40:38 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:45:47 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,6 @@ t_pos	get_window_pos(int i, int j)
 
 	pos.x = j * IMG_SIZE;
 	pos.y = i * IMG_SIZE;
-	return (pos);
-}
-
-int	get_sprite(int sprite, int dir)
-{
-	int	s;
-
-	if (dir == KEY_UP && sprite == UP_2)
-		s = UP_1;
-	else if (dir == KEY_UP)
-		s = UP_2;
-	else if (dir == KEY_DOWN && sprite == DOWN_2)
-		s = DOWN_1;
-	else if (dir == KEY_DOWN)
-		s = DOWN_2;
-	else if (dir == KEY_LEFT && sprite == LEFT_2)
-		s = LEFT_1;
-	else if (dir == KEY_LEFT)
-		s = LEFT_2;
-	else if (dir == KEY_RIGHT && sprite == RIGHT_2)
-		s = RIGHT_1;
-	else if (dir == KEY_RIGHT)
-		s = RIGHT_2;
-	return (s);
-}
-
-t_pos	get_new_pos(t_pos pos, int dir)
-{
-	if (dir == KEY_UP)
-		pos.y -= MOVE_RANGE;
-	else if (dir == KEY_DOWN)
-		pos.y += MOVE_RANGE;
-	else if (dir == KEY_RIGHT)
-		pos.x += MOVE_RANGE;
-	else if (dir == KEY_LEFT)
-		pos.x -= MOVE_RANGE;
-	pos.sprite = get_sprite(pos.sprite, dir);
 	return (pos);
 }
 

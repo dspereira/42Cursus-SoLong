@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsilveri <dsilveri@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsilveri <dsilveri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 15:29:34 by dsilveri          #+#    #+#             */
-/*   Updated: 2022/05/14 15:35:50 by dsilveri         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:43:33 by dsilveri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	move(t_data *data)
 	{
 		e_pos = &(data->e_pos[i]);
 		dir = get_enemy_dir(*e_pos, data->p_pos);
-		new_pos = get_new_pos(*e_pos, dir);
+		new_pos = get_new_pos(*e_pos, dir, ENEMY);
 		if (is_valid_move(new_pos, data->map.map)
 			&& !is_collision_btw_enemys(*data, new_pos, i))
 			*e_pos = new_pos;
