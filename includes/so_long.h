@@ -34,20 +34,22 @@
 # define ENEMY			'X'
 
 // KEYS for ubuntu linux 
-/*
+
 # define KEY_UP			119
 # define KEY_DOWN		115
 # define KEY_LEFT		97
 # define KEY_RIGHT		100
 # define KEY_ESC		65307
-*/
+
 
 // KEYS for MAC
+/*
 # define KEY_UP			13
 # define KEY_DOWN		1
 # define KEY_LEFT		0
 # define KEY_RIGHT		2
 # define KEY_ESC		53
+*/
 
 # define IMG_SIZE		60
 
