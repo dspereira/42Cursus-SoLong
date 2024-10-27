@@ -21,6 +21,7 @@ int	get_enemy_dir(t_pos e_pos, t_pos p_pos)
 	int	r;
 	int	dir;
 
+	dir = 0;
 	r = get_random_num(4);
 	if (r == 0)
 	{

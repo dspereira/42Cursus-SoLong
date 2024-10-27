@@ -76,7 +76,7 @@ static int	time_counter(int n_sec)
 	static unsigned long	time_buff = 0;
 
 	time_actual = time(NULL);
-	if (time_actual - time_buff >= n_sec)
+	if (time_actual - time_buff >= (unsigned long) n_sec)
 	{
 		time_buff = time(NULL);
 		return (1);

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static int	get_sprite_player(int sprite, int dir);
+static int	get_sprite_player(int dir);
 static int	get_sprite_enemy(int sprite, int dir);
 
 t_pos	get_new_pos(t_pos pos, int dir, char c)
@@ -28,15 +28,16 @@ t_pos	get_new_pos(t_pos pos, int dir, char c)
 	if (c == ENEMY)
 		pos.sprite = get_sprite_enemy(pos.sprite, dir);
 	else
-		pos.sprite = get_sprite_player(pos.sprite, dir);
+		pos.sprite = get_sprite_player(dir);
 	return (pos);
 }
 
-static int	get_sprite_player(int sprite, int dir)
+static int	get_sprite_player(int dir)
 {
 	static int	i = 0;
 	int			s;
 
+	s = 0;
 	if (dir == KEY_UP && i % 2 == 0)
 		s = UP_1;
 	else if (dir == KEY_UP)
@@ -61,6 +62,7 @@ static int	get_sprite_enemy(int sprite, int dir)
 {
 	int	s;
 
+	s = 0;
 	if (dir == KEY_UP && sprite == UP_2)
 		s = UP_1;
 	else if (dir == KEY_UP)

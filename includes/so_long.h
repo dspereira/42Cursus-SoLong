@@ -163,7 +163,7 @@ void		imgs_init(t_data *data);
 int			key_down(int keycode, t_data *data);
 int			key_up(int keycode, t_data *data);
 int			enemy_call(t_data *data);
-int			end_game(t_data *data);
+int			end_game();
 
 /* player.c */
 int			player_start_move(int keycode, t_data *data);

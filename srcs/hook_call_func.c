@@ -32,7 +32,7 @@ int	enemy_call(t_data *data)
 	return (0);
 }
 
-int	end_game(t_data *data)
+int	end_game()
 {
 	finish_game();
 	return (0);

@@ -27,7 +27,6 @@ t_data	game_init(t_data *data)
 
 static void	map_init(t_data *data)
 {
-	t_pos	pos;
 	t_map	map;
 	int		i;
 	int		j;
