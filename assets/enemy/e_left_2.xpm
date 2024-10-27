@@ -1,7 +1,7 @@
 /* XPM */
 static char * e_left_2_xpm[] = {
 "40 60 12 1",
-" 	c None",
+" 	c #197A53",
 ".	c #000000",
 "+	c #76747D",
 "@	c #F2F2F0",
