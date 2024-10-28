@@ -19,7 +19,7 @@
 # include <time.h>
 # include <errno.h>
 # include <string.h>
-# include "../get_next_line/get_next_line.h"
+# include "../srcs/get_next_line/get_next_line.h"
 
 # define STDERR_FD		2
 # define STDOUT_FD		1
