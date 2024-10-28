@@ -12,11 +12,11 @@
 1111111111111
 ```
 The map can be composed of only these 5 characters:
-- 0 for an empty space,
-- 1 for a wall,
-- C for a collectible,
-- E for a map exit,
-- P for the player’s starting position.
+- 0 -> empty space
+- 1 -> wall
+- C -> collectible
+- E -> map exit
+- P -> player’s starting position
 
 ## Controls
 - W -> Up
