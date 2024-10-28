@@ -11,10 +11,16 @@
 1000000000001
 1111111111111
 ```
+The map can be composed of only these 5 characters:
+- 0 for an empty space,
+- 1 for a wall,
+- C for a collectible,
+- E for a map exit,
+- P for the player’s starting position.
 
 ## Controls
-- W -> Forward
-- S -> Backward
+- W -> Up
+- S -> Down
 - A -> Left
 - D -> Right
 - ESC -> Exit
