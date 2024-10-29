@@ -1,6 +1,14 @@
 # 42Cursus-SoLong
+This project is a core part of the 42 Lisboa curriculum and aims to develop a simple 2D game (top-down view) written in C, utilizing the [MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx) graphics library.
+
+The simple objective of the game is for the player to move around the map, collect all the coins without being caught by the enemy, and reach the treasure chest to end the game.
+
 
 ## Map
+The map is an essential part of this project; it contains all the information needed to draw textures (which are images in XPM format), construct the maze, and set the starting positions of both the player and the enemies.
+
+The map is a simple .ber file that is parsed into a two-dimensional array. With the map's information stored in this array, we can use it to check the positions of all elements on the map and perform validations, such as wall collisions, and collisions with enemies, collectibles, and the exit.
+
 ```
 1111111111111
 1C00000000001
