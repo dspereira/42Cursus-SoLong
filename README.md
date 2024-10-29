@@ -3,6 +3,13 @@ This project is a core part of the 42 Lisboa curriculum and aims to develop a si
 
 The simple objective of the game is for the player to move around the map, collect all the coins without being caught by the enemy, and reach the treasure chest to end the game.
 
+## Table of Content
+
+* [Map](#map)
+* [Controls](#controls)
+* [Examples](#example)
+* [Installation / Usage](#installation--usage)
+* [License](#license)
 
 ## Map
 The map is an essential part of this project; it contains all the information needed to draw textures (which are images in XPM format), construct the maze, and set the starting positions of both the player and the enemies.
