@@ -1,7 +1,7 @@
 # 42Cursus-SoLong
 This project is a core part of the 42 Lisboa curriculum and aims to develop a simple 2D game (top-down view) written in C, utilizing the [MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx) graphics library.
 
-The simple objective of the game is for the player to move around the map, collect all the coins without being caught by the enemy, and reach the treasure chest to end the game.
+The simple objective of the game is for the player to move around the map, collect all the coins without being caught by the enemy, and reach the treasure chest to end the game. For more information, see the [subject](https://github.com/dspereira/42Cursus-SoLong/blob/main/en.subject.pdf).
 
 ## Table of Content
 
