@@ -7,7 +7,7 @@ The simple objective of the game is for the player to move around the map, colle
 
 * [Map](#map)
 * [Controls](#controls)
-* [Examples](#example)
+* [Example](#example)
 * [Installation / Usage](#installation--usage)
 * [License](#license)
 
